@@ -1,0 +1,12 @@
+<div class="form-group">
+    <%= builder.label :question, :class => 'control-label col-sm-2' %>
+    <div class="col-sm-10">
+        <%= builder.text_field :question, :class => 'form-control', :placeholder => 'Your question to the slammy' %>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-2">
+        <%= builder.hidden_field :_destroy %>
+        <%= link_to 'Remove Question', '#', :class => 'btn btn-xs btn-danger btn-remove-question' %>        
+    </div>
+</div>

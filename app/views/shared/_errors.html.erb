@@ -1,0 +1,14 @@
+<%if obj.errors.any?%>
+    <div id="pnl-errors" class="panel panel-danger">
+        <div class="panel-heading">
+            <%=pluralize obj.errors.count , 'error'%> prevented you from performing the action
+        </div>
+        <div class="panel-body">
+            <ul>
+                <%obj.errors.full_messages.each do |msg|%>
+                    <li><%=msg%></li>
+                <%end%>
+            </ul>
+        </div>
+    </div>
+<%end%>
