@@ -2,6 +2,7 @@ class BooksController < ApplicationController
     before_action :set_book, :only => [:edit, :update, :destroy]
 
     def index
+        @books = Book.all.order('created_at DESC')
     end
     def new 
         @book = Book.new
@@ -23,6 +24,10 @@ class BooksController < ApplicationController
         else
             render :edit
         end
+    end
+    def destroy
+        @book.destroy
+        redirect_to books_path
     end
 
 private

@@ -1,1 +1,29 @@
-<h1>TODO:// News Feed</h1>
+<h1 class="page-header text-center"><i class="fa fa-book"></i> My SlamBooks</h1>
+<% @books.each do |book| %>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4><%= book.title %> <button class="btn btn-success"><span class="badge">5</span>New Slams</button></h4>
+        </div>
+        <div class="panel-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <%= book.description %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <%= link_to 'Edit', edit_book_path(book), :class => 'btn btn-xs btn-warning' %>
+                        <%= link_to 'Delete', book_path(book), :class => 'btn btn-xs btn-danger', :data => { :method => 'delete', :confirm => 'Are you sure to delete this slam book ?' } %>           
+                        <span class="pull-right time">Created On <%= book.created_at.strftime('%d,%b %Y') %></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>

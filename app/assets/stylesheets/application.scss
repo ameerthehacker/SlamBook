@@ -22,7 +22,9 @@ $navbar-inverse-bg:#2a2a2a;
 @import "font-awesome";
 @import "home";
 
-
+.row  + .row {
+    margin-top: 10px;
+}
 @font-face{
     font-family: comfortaa;
     font-weight: bold;
@@ -42,4 +44,8 @@ body{
 }
 .navbar{
     border-bottom: 3px solid #3f3f3f;
+}
+.time{
+    font-size: small;
+    color: #7f8c8d;
 }
