@@ -2,7 +2,7 @@
 <% @books.each do |book| %>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h4><%= book.title %> <button class="btn btn-success"><span class="badge">5</span>New Slams</button></h4>
+            <h4><%= book.title %> <button class="btn btn-success"><span class="badge"><%= Slam.where(:status => 'NOT_READ').count %></span> New Slams</button></h4>
         </div>
         <div class="panel-body">
             <div class="container-fluid">
@@ -13,7 +13,14 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        
+                        <span class="badge"><%= pluralize book.questions.count, 'Question' %></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <%= link_to new_book_slam_path(book) do %>
+                            <button class="btn btn-success"><i class="fa fa-pencil"></i> Write a slam</button>
+                        <% end %>
                     </div>
                 </div>
                 <div class="row">

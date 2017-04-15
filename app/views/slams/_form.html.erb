@@ -1,0 +1,29 @@
+<%= render 'shared/errors', :obj => @slam %>
+<%= form_for [ @book, @slam ], :html => { :class => 'form-horizontal' } do |f| %>
+    <%= f.fields_for :answers do |builder| %>
+        <div class="form-group">
+            <%= builder.label :answer, builder.object.question, :class=>'col-sm-12' %>  
+            <%= builder.hidden_field :question, :value => builder.object.question %>                    
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <%= builder.text_area :answer, :class=>'form-control', :placeholder => 'Write your answer here' %>                
+            </div>
+        </div>
+    <% end %>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <label class="radio-inline">
+                <%= f.radio_button :privacy, 'PUBLIC', :checked => f.object.privacy == 'PUBLIC' %>Public
+            </label>
+            <label class="radio-inline">
+                <%= f.radio_button :privacy, 'PRIVATE', :checked => f.object.privacy == 'PRIVATE' %>Private       
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2">
+            <%= f.submit :class => 'btn btn-lg btn-success' %>
+        </div>
+    </div>
+<% end %>
