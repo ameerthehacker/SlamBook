@@ -8,6 +8,19 @@
 </head>
 <body>
 
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="nabar-header">
+    <%= link_to home_path, :class=>'navbar-brand' do %>
+      <i class="fa fa-book"></i> Slam Book
+    <% end %>
+  </div>
+  <div class="container-fluid">
+     <ul class="navbar-nav nav pull-right">
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </div>
+</div>
+
 <%= yield %>
 
 </body>

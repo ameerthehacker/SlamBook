@@ -6,6 +6,8 @@ default: &default
 development:
   <<: *default
   database: slam_book_development
+  username: root
+  password: pwd
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
