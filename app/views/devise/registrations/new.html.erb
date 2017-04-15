@@ -1,0 +1,41 @@
+<div class="col-sm-offset-2 col-sm-8" style="margin-top:60px;">
+  <%= render 'shared/errors', :obj => resource %>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3><i class="fa fa-user"></i> Sign Up</h3>
+    </div>
+    <div class="panel-body">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { :class => 'form-horizontal' }) do |f| %>
+        <div class="form-group">
+          <div class="col-sm-6">
+            <%= f.text_field :first_name, :class => 'form-control', :autofocus => true, :placeholder => 'First Name' %>    
+          </div>
+          <div class="col-sm-6">
+            <%= f.text_field :last_name, :class => 'form-control', :placeholder => 'Last Name' %>    
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <%= f.email_field :email, :class => 'form-control', :placeholder => 'Email' %>    
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <%= f.password_field :password, autocomplete: "off", :class => 'form-control', :placeholder => 'Password' %>    
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control', :placeholder => 'Confirm Password' %>    
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <%= f.submit "Sign up", :class => 'btn btn-success form-control' %>    
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

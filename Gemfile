@@ -32,6 +32,9 @@ gem 'better_errors', '~> 2.1', '>= 2.1.1'
 #For good looking font awesome icons
 gem 'font-awesome-sass', '~> 4.7'
 
+#Use devise for authentication
+gem 'devise', '~> 4.2', '>= 4.2.1'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
