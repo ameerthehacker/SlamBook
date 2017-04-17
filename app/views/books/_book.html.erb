@@ -1,0 +1,43 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4><%= book.title %> 
+        <% if book.user == current_user %>
+            <%= link_to book_slams_path(book), :class => 'btn btn-success' do %>
+                <span class="badge"><%= book.slams.where(:status => 'NOT_READ').count %></span> New Slams
+            <% end %>
+        <% end %>
+        </h4>
+    </div>
+    <div class="panel-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <%= book.description %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="badge"><%= pluralize book.questions.count, 'Question' %></span>
+                </div>
+            </div>
+            <div class="row"> 
+                <%= link_to book_slams_path(book), :class => 'btn btn-success' do %>
+                    <span class="badge"><%= book.slams.where(:status => 'NOT_READ').count %></span> Slams
+                <% end %>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="pull-right time">Created On <%= book.created_at.strftime('%d,%b %Y') %></span>  
+                    <% if current_user != book.user %>
+                        <%= link_to new_book_slam_path(book) do %>
+                            <button class="btn btn-xs btn-success"><i class="fa fa-pencil"></i> Write a slam</button>
+                        <% end %>
+                    <% else %>
+                        <%= link_to 'Edit', edit_book_path(book), :class => 'btn btn-xs btn-warning' %>
+                        <%= link_to 'Delete', book_path(book), :class => 'btn btn-xs btn-danger', :data => { :method => 'delete', :confirm => 'Are you sure to delete this slam book ?' } %>          
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

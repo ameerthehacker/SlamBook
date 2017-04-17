@@ -6,6 +6,7 @@ class Book < ActiveRecord::Base
     # Associations
     has_many :questions, :dependent => :destroy
     has_many :slams
+    belongs_to :user
     # Nested attributes
     accepts_nested_attributes_for :questions, :allow_destroy => true
 end

@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170415134853) do
     t.string   "first_name",             limit: 255,                null: false
     t.string   "last_name",              limit: 255,                null: false
     t.integer  "age",                    limit: 4
+    t.string   "gender",                 limit: 255
     t.string   "city",                   limit: 255
     t.string   "college",                limit: 255
     t.text     "address",                limit: 65535

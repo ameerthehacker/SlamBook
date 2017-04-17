@@ -11,9 +11,11 @@
                 <div class="row">
                     <h3>We bring your school and college memories live at the right time</h3>                
                 </div>
-                <div class="row">
-                    <a class="btn btn-lg btn-dark">Sign Up</a>
-                </div>
+                <% unless user_signed_in? %>
+                    <div class="row">
+                        <%= link_to 'Sign Up', new_user_registration_path, :class => 'btn btn-lg btn-dark' %>
+                    </div>
+                <% end %>
                 <div class="row">
                     <div class="cards">
                         <div class="col-sm-4">

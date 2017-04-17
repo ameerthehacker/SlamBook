@@ -1,7 +1,11 @@
 class SlamsController < ApplicationController
     before_action :set_book
     before_action :set_slam, :only => [ :edit,:update,:destroy ]
-
+    before_action :authenticate_user!, :except => [ :index ]
+    
+    def index 
+        @slams = @book.slams.all.order('created_at DESC')
+    end
     def new
         @slam = @book.slams.build
         @slam.privacy = 'PRIVATE'
@@ -12,8 +16,9 @@ class SlamsController < ApplicationController
     end
     def create
         @slam = @book.slams.build(get_params)
+        @slam.user = current_user
         if @slam.save
-            redirect_to books_path
+            redirect_to book_slams_path(@book)
         else
             render :new
         end
@@ -22,10 +27,14 @@ class SlamsController < ApplicationController
     end
     def update
         if @slam.update(get_params)
-            redirect_to books_path
+            redirect_to book_slams_path(@book)
         else
             render :edit
         end
+    end
+    def destroy
+        @slam.destroy
+        redirect_to book_slams_path(@book)        
     end
 private
     def set_book

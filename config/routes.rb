@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :books do
     resources :slams
   end
+  get '/users/:user_id/books', :to => 'books#user_books', :as => :user_boooks
 end

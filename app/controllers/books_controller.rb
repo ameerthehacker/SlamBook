@@ -1,8 +1,9 @@
 class BooksController < ApplicationController
     before_action :set_book, :only => [:edit, :update, :destroy]
+    before_action :authenticate_user!, :except => [ :index ]
 
     def index
-        @books = Book.all.order('created_at DESC')
+        @books = current_user.books.all.order('created_at DESC')
     end
     def new 
         @book = Book.new
@@ -10,6 +11,7 @@ class BooksController < ApplicationController
     end
     def create
         @book = Book.new(get_params)
+        @book.user = current_user
         if @book.save 
             redirect_to books_path
         else
@@ -29,10 +31,14 @@ class BooksController < ApplicationController
         @book.destroy
         redirect_to books_path
     end
+    def user_books
+        @user = User.find(params[:user_id])
+        @books = @user.books.all.order('created_at DESC')
+    end
 
 private
     def get_params
-        params.require(:book).permit(:title, :description, :questions_attributes => [:id, :question, :_destroy ])
+        params.require(:book).permit(:title, :description, :questions_attributes => [ :id, :question, :_destroy ])
     end
     def set_book
         @book = Book.find(params[:id])
