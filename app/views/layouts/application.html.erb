@@ -7,31 +7,36 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-  <div class="nabar-header">
-    <%= link_to home_path, :class=>'navbar-brand' do %>
-      <i class="fa fa-book"></i> Slam Book
-    <% end %>
-  </div>
-  <div class="container-fluid">
-     <ul class="navbar-nav nav pull-right">
-      <% if user_signed_in? %>
-        <li><%= link_to 'Logout', destroy_user_session_path, :data => { :method => :delete }  %></li>
-      <% else %>
-        <li><%= link_to 'Sign Up', new_user_registration_path %></li>        
-        <li><%= link_to 'Sign In', new_user_session_path %></li>        
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="nabar-header">
+      <%= link_to home_path, :class=>'navbar-brand' do %>
+        <i class="fa fa-book"></i> Slam Book
       <% end %>
-    </ul>
+    </div>
+    <div class="container-fluid">
+      <ul class="navbar-nav nav pull-right">
+        <% if user_signed_in? %>
+          <li> 
+            <%= link_to user_path(current_user) do %>
+              <%= current_user.decorate.avatar_image(20) %> <%= current_user.first_name %>
+            <% end %>
+          </li>
+          <li><%= link_to 'Logout', destroy_user_session_path, :data => { :method => :delete }  %></li>
+        <% else %>
+          <li><%= link_to 'Sign Up', new_user_registration_path %></li>        
+          <li><%= link_to 'Sign In', new_user_session_path %></li>        
+        <% end %>
+      </ul>
+    </div>
   </div>
-</div>
-<% if controller.controller_name == 'home' %>
-  <div class="container_fluid">
-    <%= yield %>  
-  </div>
-<% else %>
-  <div class="container">
-    <%= yield %>  
-  </div>
-<% end %>
+  <% if controller.controller_name == 'home' %>
+    <div class="container_fluid">
+      <%= yield %>  
+    </div>
+  <% else %>
+    <div class="container">
+      <%= yield %>  
+    </div>
+  <% end %>
 </body>
 </html>

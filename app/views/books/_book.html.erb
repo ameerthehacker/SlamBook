@@ -21,9 +21,11 @@
                 </div>
             </div>
             <div class="row"> 
-                <%= link_to book_slams_path(book), :class => 'btn btn-success' do %>
-                    <span class="badge"><%= book.slams.where(:status => 'NOT_READ').count %></span> Slams
-                <% end %>
+                <div class="col-sm-12">
+                    <%= link_to book_slams_path(book), :class => 'btn btn-success' do %>
+                        <span class="badge"><%= book.slams.count %></span> Slams
+                    <% end %>
+                </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">

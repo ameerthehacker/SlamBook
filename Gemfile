@@ -23,17 +23,29 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-#For bootstrap styling
+# For bootstrap styling
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 
-#For easy error spotting
+# For easy error spotting
 gem 'better_errors', '~> 2.1', '>= 2.1.1'
 
-#For good looking font awesome icons
+# For good looking font awesome icons
 gem 'font-awesome-sass', '~> 4.7'
 
-#Use devise for authentication
+# Use devise for authentication
 gem 'devise', '~> 4.2', '>= 4.2.1'
+
+# Use remotipart for ajax upload
+gem 'remotipart', '~> 1.2'
+
+# Use carrierwave for user avatar management
+gem 'carrierwave', '~> 1.0'
+
+# Use file validators gem to validate files uploaded with carrierwave
+gem 'file_validators'
+
+# Use Drapper for easy presentation of user info
+gem 'draper', '~> 2.1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

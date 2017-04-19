@@ -31,11 +31,7 @@ class BooksController < ApplicationController
         @book.destroy
         redirect_to books_path
     end
-    def user_books
-        @user = User.find(params[:user_id])
-        @books = @user.books.all.order('created_at DESC')
-    end
-
+    
 private
     def get_params
         params.require(:book).permit(:title, :description, :questions_attributes => [ :id, :question, :_destroy ])

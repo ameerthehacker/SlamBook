@@ -1,0 +1,65 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user-banner{
+    .user-cover{
+        background-image: image-url('default-user-cover.png');
+        background-repeat: repeat-x;
+        height: 200px;
+        .user-avatar{
+            position:relative;
+            top: 10px;
+            left: 10px;
+            img{
+                height: 150px;
+                width: 150px;
+                position: absolute;
+            }
+            .user-avatar-overlay{
+                height: 75px;
+                width: 150px;
+                border-bottom-left-radius: 75px;
+                border-bottom-right-radius: 75px;                
+                background: #2a2a2a;
+                position: absolute;
+                margin-top: 75px;
+                text-align: center; 
+                opacity: 0.8;               
+                a{
+                    color: #fff;
+                    position: relative;
+                    top: 10px;
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+                visibility: hidden;
+            }
+        }
+        .user-avatar-overlay:hover{
+            visibility: visible;
+        }
+        .user-avatar:hover > .user-avatar-overlay{
+            visibility: visible;
+        }
+        .user-details{
+            position: absolute;
+            .user-name{
+                color: #fff;
+                margin-left: 170px;
+                margin-top: 30px;
+            }
+        }
+    }
+    .user-link{
+        a{
+            color:#fff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        padding :10px;
+        background: #2a2a2a;
+        text-align: center;
+        border-right: 2px solid #000;
+    }
+}
