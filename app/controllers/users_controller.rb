@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
+    before_action :set_user
+
     def books
-        @user = User.find(params[:user_id])
         @books = @user.books.all.order('created_at DESC')
     end
     def update_avatar
@@ -22,5 +23,10 @@ class UsersController < ApplicationController
          respond_to do | format | 
             format.js
          end
+    end
+
+private
+    def set_user
+        @user = User.find(params[:user_id])
     end
 end

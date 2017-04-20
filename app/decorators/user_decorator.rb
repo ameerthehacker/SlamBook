@@ -11,7 +11,7 @@ class UserDecorator < Draper::Decorator
   #   end
   def avatar_image(size, id = "")
     if model.avatar.blank?
-      h.image_tag 'default-user-avatar.jpg', :height => size, :width => size, :class => 'img-circle', :id => 'img-avatar'    
+      h.image_tag 'default-user-avatar.jpg', :height => size, :width => size, :class => 'img-circle', :id => id    
     else
       h.image_tag model.avatar, :height => size, :width => size, :class => 'img-circle', :id => id  
     end
