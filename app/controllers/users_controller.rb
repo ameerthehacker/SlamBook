@@ -24,6 +24,9 @@ class UsersController < ApplicationController
             format.js
          end
     end
+    def slams
+        @slams = Slam.all.where(:user_id => current_user)
+    end
 
 private
     def set_user

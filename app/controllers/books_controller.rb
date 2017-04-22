@@ -13,6 +13,8 @@ class BooksController < ApplicationController
         @book = Book.new(get_params)
         @book.user = current_user
         if @book.save 
+            news_feed = NewsFeed.new({ :user => current_user, :book => @book, :action => 'NEW_BOOK' })
+            news_feed.save
             redirect_to books_path
         else
             render :new
@@ -22,6 +24,8 @@ class BooksController < ApplicationController
     end
     def update
         if @book.update(get_params)
+            news_feed = NewsFeed.new({ :user => current_user, :book => @book, :action => 'UPDATE_BOOK' })
+            news_feed.save
             redirect_to books_path            
         else
             render :edit

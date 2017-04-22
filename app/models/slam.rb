@@ -5,7 +5,8 @@ class Slam < ActiveRecord::Base
     # Associations
     belongs_to :book
     belongs_to :user
-    has_many :answers
+    has_many :news_feeds, :dependent => :destroy
+    has_many :answers, :dependent => :destroy
     # Nested Attributes
     accepts_nested_attributes_for :answers
 end

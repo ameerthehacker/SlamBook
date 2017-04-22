@@ -5,7 +5,8 @@ class Book < ActiveRecord::Base
     validates :questions, :presence => true 
     # Associations
     has_many :questions, :dependent => :destroy
-    has_many :slams
+    has_many :slams, :dependent => :destroy 
+    has_many :news_feeds, :dependent => :destroy
     belongs_to :user
     # Nested attributes
     accepts_nested_attributes_for :questions, :allow_destroy => true

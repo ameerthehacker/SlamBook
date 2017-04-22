@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
   # Associations
-  has_many :books
-  has_many :slams
+  has_many :books, :dependent => :destroy
+  has_many :slams, :dependent => :destroy
+  has_many :news_feeds, :dependent => :destroy
 end

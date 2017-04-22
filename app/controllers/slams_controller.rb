@@ -18,6 +18,8 @@ class SlamsController < ApplicationController
         @slam = @book.slams.build(get_params)
         @slam.user = current_user
         if @slam.save
+            news_feed = NewsFeed.new({ :user => current_user, :slam => @slam, :action => 'NEW_SLAM' })
+            news_feed.save
             redirect_to book_slams_path(@book)
         else
             render :new
@@ -27,6 +29,8 @@ class SlamsController < ApplicationController
     end
     def update
         if @slam.update(get_params)
+            news_feed = NewsFeed.new({ :user => current_user, :slam => @slam, :action => 'UPDATE_SLAM' })
+            news_feed.save
             redirect_to book_slams_path(@book)
         else
             render :edit

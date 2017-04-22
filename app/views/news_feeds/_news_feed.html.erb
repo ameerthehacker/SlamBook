@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-sm-12">
+        <% if news_feed.action == 'NEW_BOOK' %>
+            <%= news_feed.decorate.book_header('Created a SlamBook') %>
+            <%= render news_feed.book %> 
+        <% elsif news_feed.action == 'UPDATE_BOOK' %>
+            <%= news_feed.decorate.book_header('Updated his SlamBook') %>
+            <%= render news_feed.book %>
+        <% elsif news_feed.action == 'NEW_SLAM' %>
+            <%= news_feed.decorate.slam_header("Slammed") %>
+            <%= render news_feed.slam %>
+        <% elsif news_feed.action == 'UPDATE_SLAM' %>
+            <%= news_feed.decorate.slam_header("Updates his Slam On") %>
+            <%= render news_feed.slam %>
+        <% end %>
+    </div>
+</div>

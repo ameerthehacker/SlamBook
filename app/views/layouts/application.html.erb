@@ -16,7 +16,9 @@
     <div class="container-fluid">
       <ul class="navbar-nav nav pull-right">
         <% if user_signed_in? %>
-          <li><%= link_to 'My Books', books_path %></li>
+          <li><%= link_to 'Home', news_feeds_path %></li>
+          <li><%= link_to 'My SlamBooks', books_path %></li>
+          <li><%= link_to 'My Slams', user_slams_path(current_user) %></li>
           <li> 
             <%= link_to user_path(current_user) do %>
               <%= current_user.decorate.avatar_image(22, 'current-avatar-thumbnail') %> <%= current_user.first_name %>
@@ -36,6 +38,9 @@
     </div>
   <% else %>
     <div class="container">
+      <% if controller.controller_name == 'users' %>
+        <%= render 'user_banner' %>
+      <% end %>
       <%= yield %>  
     </div>
   <% end %>
