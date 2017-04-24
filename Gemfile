@@ -61,7 +61,7 @@ group :development, :test do
   gem 'byebug'
 end
 
-group :development do
+group :production do
   gem 'pg'
 end
 
