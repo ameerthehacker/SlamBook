@@ -63,3 +63,32 @@
         border-right: 2px solid #000;
     }
 }
+
+.users{
+    .user{
+        height: 100px;
+        background: #ecf0f1;
+        box-shadow: 5px 5px 4px #bdc3c7;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 4px;
+        .user-avatar{
+            border-radius: 100%;
+            position: absolute;
+        }
+        .user-name{
+            margin-left: 80px;
+            position: absolute;
+        }
+        .user-details{
+            margin-top :30px;
+            margin-left:80px;
+            font-size: smaller;
+        }
+        .user-follow{
+            margin-top: 10px;
+            margin-left: 80px;
+        }
+    }
+
+}

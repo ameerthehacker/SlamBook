@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420073930) do
+ActiveRecord::Schema.define(version: 20170424054758) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "slam_id",    limit: 4
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(version: 20170420073930) do
     t.integer  "user_id",     limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "followings", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4
+    t.integer  "follower_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "news_feeds", force: :cascade do |t|

@@ -10,10 +10,22 @@
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="nabar-header">
       <%= link_to home_path, :class=>'navbar-brand' do %>
-        <i class="fa fa-book"></i> Slam Book
+        <i class="fa fa-book"></i> SlamBook
       <% end %>
     </div>
     <div class="container-fluid">
+      <% if user_signed_in? %>
+        <%= form_tag user_search_path, :method => 'GET', :class => 'navbar-form navbar-left' do %>
+          <div class="form-group">
+            <div class="input-group">
+              <%= text_field_tag :query, '', :class => 'form-control', :placeholder => 'Search SlamBook' %>
+              <div class="input-group-btn">
+                <%= submit_tag 'Search', :class => 'btn btn-success' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
       <ul class="navbar-nav nav pull-right">
         <% if user_signed_in? %>
           <li><%= link_to 'Home', news_feeds_path %></li>
@@ -39,7 +51,9 @@
   <% else %>
     <div class="container">
       <% if controller.controller_name == 'users' %>
-        <%= render 'user_banner' %>
+        <% unless controller.action_name == 'search' %>
+          <%= render 'user_banner' %>
+        <% end %>
       <% end %>
       <%= yield %>  
     </div>

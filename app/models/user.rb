@@ -18,4 +18,6 @@ class User < ActiveRecord::Base
   has_many :books, :dependent => :destroy
   has_many :slams, :dependent => :destroy
   has_many :news_feeds, :dependent => :destroy
+  has_many :followings, :dependent => :destroy
+  has_many :followers, :through => :followings
 end
