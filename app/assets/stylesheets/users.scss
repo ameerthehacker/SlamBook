@@ -16,31 +16,6 @@
                 width: 150px;
                 position: absolute;
             }
-            .user-avatar-overlay{
-                height: 75px;
-                width: 150px;
-                border-bottom-left-radius: 75px;
-                border-bottom-right-radius: 75px;                
-                background: #2a2a2a;
-                position: absolute;
-                margin-top: 75px;
-                text-align: center; 
-                opacity: 0.8;               
-                a{
-                    color: #fff;
-                    position: relative;
-                    top: 10px;
-                    text-decoration: none;
-                    font-weight: bold;
-                }
-                visibility: hidden;
-            }
-        }
-        .user-avatar-overlay:hover{
-            visibility: visible;
-        }
-        .user-avatar:hover > .user-avatar-overlay{
-            visibility: visible;
         }
         .user-details{
             position: absolute;

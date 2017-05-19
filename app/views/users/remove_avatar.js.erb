@@ -1,8 +1,0 @@
-<% if current_user.errors.any? %>
-    $("#avatar-update-info").html("<%= j render 'shared/errors', :obj => current_user %>");    
-<% else %>
-    $("#avatar-update-info").html("<%= j render 'shared/flash_message' %>");
-    $('#img-avatar').attr('src', "<%= image_url('default-user-avatar.jpg') %>");
-    $('#current-avatar').attr('src', "<%= image_url('default-user-avatar.jpg') %>");
-    $('#current-avatar-thumbnail').attr('src', "<%= image_url('default-user-avatar.jpg') %>");            
-<% end %>

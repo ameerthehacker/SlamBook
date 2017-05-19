@@ -1,51 +1,9 @@
-<% if @user == current_user %>
-    <div class="modal fade" id="modal-update-avatar">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal">&times;</button>
-                    <h4>Update Avatar</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <%= current_user.decorate.avatar_image(150, 'img-avatar') %>
-                        </div>
-                        <div class="col-sm-8"> 
-                            <div id="avatar-update-info">
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <button class="btn btn-success" onclick="$('#file-avatar').trigger('click');" >Browse</button>
-                            <%= link_to 'Remove', user_remove_avatar_path(current_user), :class => 'btn btn-danger', :remote => true %>
-                        </div>
-                    </div>
-                    <%= form_tag user_update_avatar_path(current_user), :id=>'frm-update-user-avatar', :remote => true, :multipart => true do %> 
-                        <%= file_field_tag :avatar, :id=>'file-avatar', :style => 'visibility:hidden;display:none' %>
-                    <% end %>                
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-success" onclick="$('#frm-update-user-avatar').trigger('submit');">Update</button>
-                    <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-<% end %>
 <div class="row">
     <div class="col-sm-12">
         <div class="user-banner">
             <div class="user-cover">
                 <div class="user-avatar">
-                    <%= @user.decorate.avatar_image(150, 'current-avatar') %>
-                    <% if @user == current_user %>
-                        <div class="user-avatar-overlay">
-                            <a href="#" data-target="#modal-update-avatar" data-toggle="modal">Change</a>
-                        </div>     
-                    <% end %>                                       
+                    <%= @user.decorate.avatar_image(150, 'current-avatar') %>                                     
                 </div>
                 <div class="user-details">
                     <div class="user-name">

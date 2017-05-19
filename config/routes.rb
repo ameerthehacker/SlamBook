@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :registrations => 'users/registrations' }
   root :to=>'home#index', :as=>:home
   resources :books do
     resources :slams
@@ -10,12 +9,14 @@ Rails.application.routes.draw do
   get '/users/:user_id/about', :to => 'users#about', :as => :user_about
   get '/users/:user_id/slams', :to => 'users#slams', :as => :user_slams     
   get '/users/:user_id/following', :to => 'users#following', :as => :user_following    
-  post '/users/:user_id/update_avatar', :to => 'users#update_avatar', :as => :user_update_avatar  
-  get '/users/:user_id/remove_avatar', :to => 'users#remove_avatar', :as => :user_remove_avatar 
   # Follow a user
   get '/users/:user_id/follow', :to=>'users#follow', :as => :user_follow
   # UnFollow a user
   get '/users/:user_id/unfollow', :to=>'users#unfollow', :as => :user_unfollow    
   get '/newsfeeds', :to => 'news_feeds#index', :as => :news_feeds
 
+  # Routes for omniauth
+  get '/auth/:provider/callback', :to => 'sessions#create'
+  get '/auth/failure', :to => redirect('/') 
+  get '/signout', :to => 'sessions#destroy'    
 end
