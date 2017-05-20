@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
   get '/users/search', :to => 'users#search', :as => :user_search
   get '/users/:user_id', :to => 'users#books', :as => :user
-  get '/users/:user_id/books', :to => 'users#books', :as => :user_books
+  match '/users/:user_id/books', :to => 'users#books', :as => :user_books, :via => [:get, :post]
   get '/users/:user_id/about', :to => 'users#about', :as => :user_about
   get '/users/:user_id/slams', :to => 'users#slams', :as => :user_slams
   get '/users/:user_id/following', :to => 'users#following', :as => :user_following

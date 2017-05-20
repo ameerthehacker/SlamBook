@@ -36,6 +36,7 @@ class UsersController < ApplicationController
     end
     def follow
         @user.followers<<current_user
+        current_user.notify_user(@user, "#{current_user.full_name} followed you on theSlamBook, view slambooks to slam now!", user_books(current_user))
         respond_to do |format|
             format.js
         end
