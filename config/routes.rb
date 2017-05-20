@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :slams
   end
   match '/users/search', :to => 'users#search', :as => :user_search, :via => [:get, :post]
-  match '/users/:user_id', :to => 'users#books', :as => :user, :via => [:get, :post]
+  match '/users/:user_id', :to => redirect('http://www.google.com'), :via => [:get, :post]
   match '/users/:user_id/books', :to => 'users#books', :as => :user_books, :via => [:get, :post]
   match '/users/:user_id/about', :to => 'users#about', :as => :user_about, :via => [:get, :post]
   match '/users/:user_id/slams', :to => 'users#slams', :as => :user_slams, :via => [:get, :post]
