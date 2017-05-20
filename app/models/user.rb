@@ -28,4 +28,10 @@ class User < ActiveRecord::Base
             user.save!
         end
     end
+    def facebook
+        @facebook ||= Koala::Facebook::API.new(oauth_token)
+    end
+    def app
+        @app ||= Koala::Facebook::API.new(Koala::Facebook::OAuth.new("1898283013788070", "2aec77dd54976fd74ac7cc8641c53309").get_app_access_token)
+    end
 end

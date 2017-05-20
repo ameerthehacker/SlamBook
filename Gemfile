@@ -41,6 +41,9 @@ gem 'omniauth-facebook', '~> 4.0'
 # Use figaro gem to use environment variables
 gem 'figaro', '~> 1.1', '>= 1.1.1'
 
+# Use koala gem for facebook graph API
+gem 'koala', '~> 3.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
