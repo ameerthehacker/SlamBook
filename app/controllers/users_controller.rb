@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
     before_action :set_user, :except => [ :search ]
-    skip_before_action :verify_authenticity_token
     
     def books
         @books = @user.books.all.order('created_at DESC')

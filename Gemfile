@@ -44,6 +44,7 @@ gem 'figaro', '~> 1.1', '>= 1.1.1'
 # Use koala gem for facebook graph API
 gem 'koala', '~> 3.0'
 
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -65,6 +66,9 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+
+  #  Use localtunnel gem to test facebook api's offline
+  gem 'localtunnel', '~> 1.0', '>= 1.0.3'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

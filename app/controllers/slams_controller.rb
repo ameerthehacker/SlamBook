@@ -1,6 +1,6 @@
 class SlamsController < ApplicationController
     before_action :set_book
-    before_action :set_slam, :only => [ :edit,:update,:destroy ]
+    before_action :set_slam, :only => [ :edit, :update, :show, :destroy ]
     before_action :authenticate_user!, :except => [ :index ]
     
     def index 
@@ -20,10 +20,13 @@ class SlamsController < ApplicationController
         if @slam.save
             news_feed = NewsFeed.new({ :user => current_user, :slam => @slam, :action => 'NEW_SLAM' })
             news_feed.save
+            current_user.notify_user(@book.user, "#{current_user.full_name} slammed on your slambook #{@book.title}", book_slam_path(@book, @slam))
             redirect_to book_slams_path(@book)
         else
             render :new
         end
+    end
+    def show
     end
     def edit
     end

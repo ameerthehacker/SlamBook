@@ -14,6 +14,7 @@ class BooksController < ApplicationController
         @book.user = current_user
         if @book.save 
             news_feed = NewsFeed.new({ :user => current_user, :book => @book, :action => 'NEW_BOOK' })
+            current_user.notify_followers("#{current_user.full_name} created a new slambook, slam now!", new_book_slam_path(@book))
             news_feed.save
             redirect_to books_path
         else
