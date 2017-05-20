@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
 
     # Validations
     validates :first_name, :presence => true
-    validates :email, :presence => true, :uniqueness => true
     
     # Associations
     has_many :books, :dependent => :destroy
