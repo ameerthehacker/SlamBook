@@ -6,7 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:url"           content="http://www.theslambooks.herokuapp.com" />
+  <meta property="og:url"           content="<%= request.url %>" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="theSlamBooks" />
   <meta property="og:description"   content="Create online slambooks and slam friends to bring your school days to life in future" />
