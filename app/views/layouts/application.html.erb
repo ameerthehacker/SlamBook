@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>theSlamBook</title>
+  <title>theSlamBooks</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:url"           content="http://www.theslambooks.herokuapp.com" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="theSlamBooks" />
+  <meta property="og:description"   content="Create online slambooks and slam friends to bring your school days to life in future" />
+  <meta property="og:image"         content="<%= image_url('home-cover1.jpg') %>" />
 </head>
 <body>
   <div class="navbar navbar-inverse navbar-fixed-top">
@@ -17,7 +22,7 @@
           <span class="icon-bar"></span>
         </button>
         <%= link_to home_path, :class=>'navbar-brand' do %>
-          <i class="fa fa-book"></i> theSlamBook
+          <i class="fa fa-book"></i> theSlamBooks
         <% end %>
       </div>
       <div class="collapse navbar-collapse" id="navbar-body">
