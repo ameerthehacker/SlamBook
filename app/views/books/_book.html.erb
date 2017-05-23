@@ -29,10 +29,10 @@
             </div>
             <div class="row">
                 <div class="col-sm-1">
-                    <%= render 'shared/fb_share_button', :url => book_url(book) %>                   
+                    <%= render 'shared/fb_share_button', :url => user_book_url(book) %>                   
                 </div>
                 <div class="col-sm-1">
-                    <%= render 'shared/twitter_share_button', :text => "Hey there ! checkout my new slambook #{book.title} and slam me if u dare!", :url => book_url(book) %> 
+                    <%= render 'shared/twitter_share_button', :text => "Hey there ! checkout my new slambook #{book.title} and slam me if u dare!", :url => user_book_url(book) %> 
                 </div>
             </div>
             <div class="row">
