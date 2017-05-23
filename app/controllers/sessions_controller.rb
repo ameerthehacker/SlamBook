@@ -9,4 +9,6 @@ class SessionsController < ApplicationController
         session[:last_url] = nil
         redirect_to home_path          
     end
+    def failure
+    end
 end

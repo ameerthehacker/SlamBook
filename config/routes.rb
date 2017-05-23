@@ -18,6 +18,6 @@ Rails.application.routes.draw do
   get '/newsfeeds', :to => 'news_feeds#index', :as => :news_feeds
   # Routes for omniauth
   match '/auth/:provider/callback', :to => 'sessions#create', :via => [:get, :post]
-  match '/auth/failure', :to => redirect('/') , :via => [:get, :post]
+  match '/auth/failure', :to => 'sessions#failure' , :via => [:get, :post]
   match '/signout', :to => 'sessions#destroy' , :via => [:get, :post]
 end
