@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root :to=>'home#index', :as=>:home
+  root :to=>'home#index', :as=>:home, :via => [ :get, :post ]
   resources :books do
     post '/slams/new', :to => 'slams#new'
     post '/slams/:id', :to => 'slams#show'
