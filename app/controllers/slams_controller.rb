@@ -2,6 +2,8 @@ class SlamsController < ApplicationController
     before_action :set_book
     before_action :set_slam, :only => [ :edit, :update, :show, :destroy ]
     before_action :authenticate_user!, :except => [ :index ]
+    before_action :slam_owner, :only => [ :edit, :update ]
+    before_action :slam_or_book_owner, :only => [ :destroy ]    
     
     def index 
         @slams = @book.slams.all.order('created_at DESC')
@@ -18,6 +20,7 @@ class SlamsController < ApplicationController
         @slam = @book.slams.build(get_params)
         @slam.user = current_user
         if @slam.save
+            flash[:success] = "Your slam was successful!"
             news_feed = NewsFeed.new({ :user => current_user, :slam => @slam, :action => 'NEW_SLAM' })
             news_feed.save
             User.delay.notify_user(@book.user, "#{current_user.full_name} slammed on your slambook #{@book.title}", 
@@ -36,6 +39,7 @@ class SlamsController < ApplicationController
     end
     def update
         if @slam.update(get_params)
+            flash[:success] = "Your slam was updated!"            
             news_feed = NewsFeed.new({ :user => current_user, :slam => @slam, :action => 'UPDATE_SLAM' })
             news_feed.save
             redirect_to book_slams_path(@book)
@@ -45,9 +49,28 @@ class SlamsController < ApplicationController
     end
     def destroy
         @slam.destroy
+        flash[:success] = "Your slam was deleted!"        
         redirect_to book_slams_path(@book)        
     end
 private
+    def slam_owner
+        if @slam.user == current_user
+            true
+        else
+            flash[:danger] = "You are not authenticated to perform this action!"
+            redirect_to book_slams_path(@book)
+            false
+        end
+    end
+    def slam_or_book_owner
+        if @slam.user == current_user || @slam.book.user == current_user
+            true
+        else
+            flash[:danger] = "You are not authenticated to perform this action!"
+            redirect_to book_slams_path(@book)
+            false
+        end
+    end
     def set_book
         @book = Book.find(params[:book_id])
     end

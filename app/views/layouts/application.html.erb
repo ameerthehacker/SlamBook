@@ -51,7 +51,8 @@
         <% unless controller.action_name == 'search' %>
           <%= render 'user_banner' %>
         <% end %>
-      <% end %>
+      <% end %>    
+      <%= render 'shared/flash_message' %>        
       <%= yield %>  
     </div>
   <% end %>

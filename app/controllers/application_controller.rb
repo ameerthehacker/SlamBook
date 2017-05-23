@@ -5,14 +5,18 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token
 
   def user_signed_in?
-        unless session[:user_id].nil?
-            true
-        else
-            false
-        end
+    unless session[:user_id].nil?
+        true
+    else
+        false
+    end
   end
   def current_user
-      @current_user ||= User.find(session[:user_id])
+    if user_signed_in?
+        @current_user ||= User.find(session[:user_id])
+    else
+        nil
+    end
   end
   def authenticate_user!
       unless user_signed_in?
