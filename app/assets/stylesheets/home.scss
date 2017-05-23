@@ -9,15 +9,15 @@
             border-bottom: 2px solid #3f3f3f;
         }
         .cover-image{
-            background-size: 100%;
+            background-size: cover;
             color:#fff;
             text-align: center;
             background-repeat: no-repeat;
-            height: 550px;
-
+            height: 100%;
             .cards{
                 margin-top:20px;
                 .card{
+                    margin-top: 5px;
                     width:100%;
                     background:#fff;
                     opacity: 0.8;
@@ -29,8 +29,14 @@
                     p{
                         font-size: medium;
                     }
+                    @media only screen and (max-width: 640px){
+                        p{
+                            font-size: 12px;
+                        }
+                    }
                 }
             }
+           
         }
     }
 }
@@ -46,4 +52,16 @@
 }
 .btn-dark:active{
     background: #000;
+}
+
+@media only screen and (max-width: 640px){
+    h1{
+         font-size: 20px;
+    }
+    h3,h4{
+        font-size: 15px;
+    }
+    .small-font-awesome{
+        font-size: 30px;
+    }
 }

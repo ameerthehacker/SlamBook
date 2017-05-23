@@ -9,37 +9,44 @@
 </head>
 <body>
   <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="nabar-header">
-      <%= link_to home_path, :class=>'navbar-brand' do %>
-        <i class="fa fa-book"></i> SlamBook
-      <% end %>
-    </div>
     <div class="container-fluid">
-      <% if user_signed_in? %>
-        <%= form_tag user_search_path, :method => 'GET', :class => 'navbar-form navbar-left' do %>
-          <div class="form-group">
-            <div class="input-group">
-              <%= text_field_tag :query, '', :class => 'form-control', :placeholder => 'Search SlamBook' %>
-              <div class="input-group-btn">
-                <%= submit_tag 'Search', :class => 'btn btn-success' %>
+      <div class="navbar-header">
+        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-body">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to home_path, :class=>'navbar-brand' do %>
+          <i class="fa fa-book"></i> SlamBook
+        <% end %>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-body">
+        <% if user_signed_in? %>
+          <%= form_tag user_search_path, :method => 'GET', :class => 'navbar-form navbar-left' do %>
+            <div class="form-group">
+              <div class="input-group">
+                <%= text_field_tag :query, '', :class => 'form-control', :placeholder => 'Search SlamBook' %>
+                <div class="input-group-btn">
+                  <%= submit_tag 'Search', :class => 'btn btn-success' %>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
-      <% end %>
-      <ul class="navbar-nav nav pull-right">
-        <% if user_signed_in? %>
-          <li><%= link_to 'Home', news_feeds_path %></li>
-          <li><%= link_to 'My SlamBooks', books_path %></li>
-          <li><%= link_to 'My Slams', user_slams_path(current_user) %></li>
-          <li> 
-            <%= link_to user_path(current_user) do %>
-              <%= current_user.decorate.avatar_image(22, 'current-avatar-thumbnail') %> <%= current_user.first_name %>
-            <% end %>
-          </li>
-          <li><%= link_to 'Logout', "/signout"  %></li>
-        <% end %>
-      </ul>
+        <ul class="navbar-nav nav">
+          <% if user_signed_in? %>
+            <li><%= link_to 'Home', news_feeds_path %></li>
+            <li><%= link_to 'My SlamBooks', books_path %></li>
+            <li><%= link_to 'My Slams', user_slams_path(current_user) %></li>
+            <li> 
+              <%= link_to user_path(current_user) do %>
+                <%= current_user.decorate.avatar_image(22, 'current-avatar-thumbnail') %> <%= current_user.first_name %>
+              <% end %>
+            </li>
+            <li><%= link_to 'Logout', "/signout"  %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
   <% if controller.controller_name == 'home' %>
