@@ -28,11 +28,11 @@ $navbar-inverse-bg:#2a2a2a;
 @font-face{
     font-family: comfortaa;
     font-weight: bold;
-    src: url('fonts/Comfortaa-Bold.ttf');
+    src: asset-url('fonts/Comfortaa-Bold.ttf');
 }
 @font-face{
     font-family: comfortaa;
-    src: url('fonts/Comfortaa-Light.ttf');
+    src: asset-url('fonts/Comfortaa-Light.ttf');
 }
 body{
     font-family: comfortaa;
