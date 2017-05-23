@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SlamBook</title>
+  <title>theSlamBook</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -17,7 +17,7 @@
           <span class="icon-bar"></span>
         </button>
         <%= link_to home_path, :class=>'navbar-brand' do %>
-          <i class="fa fa-book"></i> SlamBook
+          <i class="fa fa-book"></i> theSlamBook
         <% end %>
       </div>
       <div class="collapse navbar-collapse" id="navbar-body">
@@ -33,17 +33,41 @@
             </div>
           <% end %>
         <% end %>
-        <ul class="navbar-nav nav">
+        <ul class="navbar-nav nav navbar-right">
           <% if user_signed_in? %>
-            <li><%= link_to 'Home', news_feeds_path %></li>
-            <li><%= link_to 'My SlamBooks', books_path %></li>
-            <li><%= link_to 'My Slams', user_slams_path(current_user) %></li>
+            <li>
+              <%= link_to news_feeds_path do %>
+                <i class="fa fa-list-ul"></i> Wall
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_book_path do %>
+                <i class="fa fa-plus"></i> New SlamBook
+              <% end %>
+            </li>
+            <li>
+              <%= link_to books_path do %>
+                <i class="fa fa-file-text-o"></i> My SlamBooks
+              <% end %>
+            </li>
+            <li>
+              <%= link_to user_slams_path(current_user) do %>
+                <i class="fa fa-pencil"></i> My Slams
+              <% end %>
+            </li>
             <li> 
               <%= link_to user_path(current_user) do %>
                 <%= current_user.decorate.avatar_image(22, 'current-avatar-thumbnail') %> <%= current_user.first_name %>
               <% end %>
             </li>
-            <li><%= link_to 'Logout', "/signout"  %></li>
+            <li>
+              <%= link_to "/signout" do %>
+                <i class="fa fa-key"></i> Logout              
+              <% end %>
+            </li>
+          <% else %>
+             <li><a href="#home"><i class="fa fa-home"></i> Home</a></li>          
+             <li><a href="#about"><i class="fa fa-child"></i> About</a></li>
           <% end %>
         </ul>
       </div>

@@ -66,4 +66,22 @@ class User < ActiveRecord::Base
             UserMailer.follow(user, follower).deliver            
         end
     end
+    def suggested_users
+        max_users = 6
+        fb_users = facebook.get_connection("me", "friends")
+        user_ids = []
+        fb_users.each do | fb_user |
+            user_ids << fb_user['id']
+        end
+        @users = User.where(:uid => user_ids).limit(max_users)
+        no_suggested = @users.count
+        needed_suggestions = max_users - no_suggested
+        if needed_suggestions > 0
+            User.order('created_at DESC').limit(needed_suggestions).each do |user|
+                @users << user
+            end
+        else
+            @users
+        end
+    end
 end
