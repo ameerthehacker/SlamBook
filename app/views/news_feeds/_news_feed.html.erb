@@ -7,11 +7,15 @@
             <%= news_feed.decorate.book_header('Updated his SlamBook') %>
             <%= render news_feed.book %>
         <% elsif news_feed.action == 'NEW_SLAM' %>
-            <%= news_feed.decorate.slam_header("Slammed") %>
-            <%= render news_feed.slam %>
+            <% if news_feed.slam.book.user == current_user || slam.privacy == 'PUBLIC' %>
+                <%= news_feed.decorate.slam_header("Slammed") %>
+                <%= render news_feed.slam %>
+            <% end %>
         <% elsif news_feed.action == 'UPDATE_SLAM' %>
-            <%= news_feed.decorate.slam_header("Updates his Slam On") %>
-            <%= render news_feed.slam %>
+            <% if news_feed.slam.book.user == current_user || slam.privacy == 'PUBLIC' %>
+                <%= news_feed.decorate.slam_header("Updates his Slam On") %>
+                <%= render news_feed.slam %>
+            <% end %>
         <% end %>
     </div>
 </div>

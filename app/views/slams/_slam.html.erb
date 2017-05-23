@@ -1,30 +1,32 @@
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3><%= slam.user.full_name %> Said</h3>
-    </div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-sm-12">
-                <% slam.answers.each do | answer | %>
-                    <h4><%= answer.question %></h4>
-                    <p><%= answer.answer %></p>            
-                    <% if slam.status == 'NOT_READ' && slam.book.user == current_user %>
-                        <% slam.status = 'READ' %>
-                        <% slam.save %>
+<% if slam.book.user == current_user || slam.privacy == 'PUBLIC' %>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3><%= slam.user.full_name %> Said</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <% slam.answers.each do | answer | %>
+                        <h4><%= answer.question %></h4>
+                        <p><%= answer.answer %></p>            
+                        <% if slam.status == 'NOT_READ' && slam.book.user == current_user %>
+                            <% slam.status = 'READ' %>
+                            <% slam.save %>
+                        <% end %>
                     <% end %>
-                <% end %>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <span class="pull-right time"><%= time_ago_in_words(slam.created_at) %> ago</span>  
-                <% if slam.user == current_user %>
-                    <%= link_to 'Edit', edit_book_slam_path(slam.book, slam), :class => 'btn btn-xs btn-warning' %>
-                <% end %>
-                <% if slam.user == current_user || slam.book.user == current_user %>
-                    <%= link_to 'Delete', book_slam_path(slam.book, slam), :class => 'btn btn-xs btn-danger', :data => { :method => 'delete', :confirm => 'Are you sure to delete this slam ?' } %>
-                <% end %>         
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="pull-right time"><%= time_ago_in_words(slam.created_at) %> ago</span>  
+                    <% if slam.user == current_user %>
+                        <%= link_to 'Edit', edit_book_slam_path(slam.book, slam), :class => 'btn btn-xs btn-warning' %>
+                    <% end %>
+                    <% if slam.user == current_user || slam.book.user == current_user %>
+                        <%= link_to 'Delete', book_slam_path(slam.book, slam), :class => 'btn btn-xs btn-danger', :data => { :method => 'delete', :confirm => 'Are you sure to delete this slam ?' } %>
+                    <% end %>         
+                </div>
             </div>
         </div>
     </div>
-</div>
+<% end %>

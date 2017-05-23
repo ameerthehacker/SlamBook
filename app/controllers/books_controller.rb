@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-    before_action :set_book, :only => [:edit, :update, :destroy]
+    before_action :set_book, :only => [:edit, :update, :destroy, :show]
     before_action :authenticate_user!, :except => [ :index ]
 
     def index
@@ -22,6 +22,8 @@ class BooksController < ApplicationController
         end
     end
     def edit
+    end
+    def show
     end
     def update
         if @book.update(get_params)

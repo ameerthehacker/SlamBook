@@ -69,6 +69,9 @@ group :development do
 
   #  Use localtunnel gem to test facebook api's offline
   gem 'localtunnel', '~> 1.0', '>= 1.0.3'
+
+  # Use letter opener gem for sending email in development
+  gem 'letter_opener', '~> 1.4', '>= 1.4.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -85,6 +85,10 @@ GEM
       addressable
       faraday
       json (>= 1.8)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     localtunnel (1.0.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -195,6 +199,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   koala (~> 3.0)
+  letter_opener (~> 1.4, >= 1.4.1)
   localtunnel (~> 1.0, >= 1.0.3)
   mysql2
   omniauth-facebook (~> 4.0)
