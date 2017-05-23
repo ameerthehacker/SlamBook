@@ -38,7 +38,7 @@
             <div class="row">
                 <div class="col-sm-10">
                     <% unless book.slams.count == 0 %>
-                        <% book.slams.group(:user_id).order('created_at DESC').limit(5).each do | slam | %>
+                        <% book.slams.order('created_at DESC').limit(5).each do | slam | %>
                             <%= slam.user.decorate.avatar_image(30) %>
                         <% end %>
                     <% end %>
