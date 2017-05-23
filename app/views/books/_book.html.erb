@@ -27,10 +27,17 @@
                     <% end %>
                 </div>
             </div>
-            
+            <div class="row">
+                <div class="col-sm-1">
+                    <%= render 'shared/fb_share_button', :url => book_url(book) %>                   
+                </div>
+                <div class="col-sm-1">
+                    <%= render 'shared/twitter_share_button', :text => "Hey there ! checkout my new slambook #{book.title} and slam me if u dare!", :url => book_url(book) %> 
+                </div>
+            </div>
             <div class="row">
                 <div class="col-sm-10">
-                    <% book.slams.order('created_at DESC').group(:user_id).limit(5).each do | slam | %>
+                    <% book.slams.order('created_at DESC').limit(5).each do | slam | %>
                         <%= slam.user.decorate.avatar_image(30) %>
                     <% end %>
                 </div>
