@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-    before_action :set_book, :only => [:edit, :update, :destroy, :show]
+    before_action :set_book, :only => [ :edit, :update, :destroy ]
     before_action :authenticate_user!, :except => [ :index ]
 
     def index
@@ -14,8 +14,9 @@ class BooksController < ApplicationController
         @book.user = current_user
         if @book.save 
             news_feed = NewsFeed.new({ :user => current_user, :book => @book, :action => 'NEW_BOOK' })
-            current_user.notify_followers("#{current_user.full_name} created a new slambook, slam now!", new_book_slam_path(@book))
-            news_feed.save
+            news_feed.save            
+            User.delay.notify_followers(current_user, "#{current_user.full_name} created a new slambook #{@book.title}, slam now!", new_book_slam_path(@book))
+            User.email_new_book(current_user, @book)
             redirect_to books_path
         else
             render :new
@@ -23,12 +24,12 @@ class BooksController < ApplicationController
     end
     def edit
     end
-    def show
-    end
     def update
         if @book.update(get_params)
             news_feed = NewsFeed.new({ :user => current_user, :book => @book, :action => 'UPDATE_BOOK' })
             news_feed.save
+            User.delay.notify_followers(current_user, "#{current_user.full_name} updated the slambook #{@book.title}, slam now!", new_book_slam_path(@book))
+            User.email_update_book(current_user, @book)
             redirect_to books_path            
         else
             render :edit

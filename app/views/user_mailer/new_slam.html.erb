@@ -1,0 +1,14 @@
+<% if @slam.book.user == @follower %>
+    Wow! <%= @follower.full_name %>
+    <p>
+        <%= link_to @user.full_name, user_url(@user) %> slammed you
+    </p>
+<% else %>
+    Hi, <%= @follower.full_name %>
+    <p>
+        <%= link_to @user.full_name, user_url(@user) %> slammed <%= link_to @slam.book.user.full_name, user_url(@slam.book.user) %>
+    </p>
+<% end %>
+<p>
+    <%= link_to 'Click here', book_slam_url(@slam.book, @slam) %> to have a look at the slam!
+</p>

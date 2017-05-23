@@ -4,6 +4,9 @@ class UsersController < ApplicationController
     def books
         @books = @user.books.all.order('created_at DESC')
     end
+    def book
+        @book = Book.find(params[:book_id])
+    end
     def update_avatar
         current_user.avatar = params[:avatar]
         if current_user.avatar.blank?
@@ -25,7 +28,7 @@ class UsersController < ApplicationController
          end
     end
     def slams
-        @slams = Slam.all.where(:user_id => current_user)
+        @slams = Slam.all.where(:user_id => @user).order('created_at DESC')
     end
     def following
         @user = User.find(params[:user_id])

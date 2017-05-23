@@ -1,0 +1,7 @@
+Hi, <%= @follower.full_name %>
+<p>
+    <%= link_to @user.full_name, user_url(@user) %> created a new slambook <%= link_to @book.title, user_book_url(@user, @book) %>
+</p>
+<p>
+    <%= link_to 'Click here', new_book_slam_url(@book) %> to write a memorable slam now!
+</p>

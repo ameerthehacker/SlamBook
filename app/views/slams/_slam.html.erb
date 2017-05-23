@@ -1,4 +1,4 @@
-<% if slam.book.user == current_user || slam.privacy == 'PUBLIC' %>
+<% if slam.book.user == current_user || slam.privacy == 'PUBLIC' || slam.user == current_user %>
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3><%= slam.user.full_name %> Said</h3>

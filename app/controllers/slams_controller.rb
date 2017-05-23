@@ -20,7 +20,11 @@ class SlamsController < ApplicationController
         if @slam.save
             news_feed = NewsFeed.new({ :user => current_user, :slam => @slam, :action => 'NEW_SLAM' })
             news_feed.save
-            current_user.notify_user(@book.user, "#{current_user.full_name} slammed on your slambook #{@book.title}", book_slam_path(@book, @slam))
+            User.delay.notify_user(@book.user, "#{current_user.full_name} slammed on your slambook #{@book.title}", 
+            book_slam_path(@book, @slam))
+            if @slam.privacy == 'PUBLIC'
+                User.delay.email_new_slam(current_user, @slam)
+            end
             redirect_to book_slams_path(@book)
         else
             render :new

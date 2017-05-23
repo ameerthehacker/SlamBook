@@ -30,9 +30,9 @@ class User < ActiveRecord::Base
     def facebook
         @facebook ||= Koala::Facebook::API.new(oauth_token)
     end
-    def self.notify_followers(template, href)
+    def self.notify_followers(user, template, href)
         @app ||= Koala::Facebook::API.new(Koala::Facebook::OAuth.new("1898283013788070", "2aec77dd54976fd74ac7cc8641c53309").get_app_access_token)
-        self.followers.each do |follower|
+        user.followers.each do |follower|
             @app.put_connections(follower.uid, "notifications", :template => template, :href => href)
         end
     end
@@ -40,7 +40,30 @@ class User < ActiveRecord::Base
        @app ||= Koala::Facebook::API.new(Koala::Facebook::OAuth.new("1898283013788070", "2aec77dd54976fd74ac7cc8641c53309").get_app_access_token)
        @app.put_connections(user.uid, "notifications", :template => template, :href => href)
     end
+    def self.email_new_book(user, book)
+        user.followers.each do |follower|
+            unless follower.email.blank?
+                UserMailer.new_book(user, follower, book).deliver
+            end
+        end
+    end
+    def self.email_update_book(user, book)
+        user.followers.each do |follower|
+            unless follower.email.blank?
+                UserMailer.update_book(user, follower, book).deliver                                
+            end
+        end
+    end
+    def self.email_new_slam(user, slam)
+        user.followers.each do |follower|
+            unless follower.email.blank?
+                UserMailer.new_slam(user, follower, slam).deliver                
+            end
+        end
+    end
     def self.email_followed(user, follower)
-        UserMailer.follow(user, follower).deliver
+        unless user.email.blank?
+            UserMailer.follow(user, follower).deliver            
+        end
     end
 end
