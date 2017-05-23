@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/users/search', :to => 'users#search', :as => :user_search
   get '/users/:user_id', :to => 'users#books', :as => :user
   match '/users/:user_id/books', :to => 'users#books', :as => :user_books, :via => [:get, :post]
-  match '/users/:user_id/books/:book_id', :to => 'users#book', :as => :user_book, :via => [:get, :post]
+  get '/users/:user_id/books/:book_id', :to => 'users#book', :as => :user_book
   get '/users/:user_id/slams', :to => 'users#slams', :as => :user_slams
   get '/users/:user_id/following', :to => 'users#following', :as => :user_following
   # Follow a user
