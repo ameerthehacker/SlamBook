@@ -7,5 +7,6 @@ class NewsFeedsController < ApplicationController
         end
 
         @news_feeds = NewsFeed.where(:user_id => following_users).order('created_at DESC')
+        @suggested_users = current_user.suggested_users
     end
 end
