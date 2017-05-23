@@ -35,9 +35,10 @@ class UsersController < ApplicationController
         @users=User.where('(users.first_name LIKE ? OR users.email LIKE ?) AND users.email <> ?', "#{params[:query]}%", "#{params[:query]}%", current_user.email)
     end
     def follow
-        UserMailer.follow.deliver
         @user.followers<<current_user
-        current_user.notify_user(@user, "#{current_user.full_name} followed you on theSlamBook, view slambooks to slam now!", user_books_path(current_user))
+        User.delay.notify_user(@user, "#{current_user.full_name} followed you on theSlamBook, view slambooks to slam 
+        now!", user_books_path(current_user))
+        User.delay.email_followed(@user, current_user)        
         respond_to do |format|
             format.js
         end

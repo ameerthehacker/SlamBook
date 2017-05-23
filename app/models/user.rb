@@ -30,14 +30,17 @@ class User < ActiveRecord::Base
     def facebook
         @facebook ||= Koala::Facebook::API.new(oauth_token)
     end
-    def notify_followers(template, href)
+    def self.notify_followers(template, href)
         @app ||= Koala::Facebook::API.new(Koala::Facebook::OAuth.new("1898283013788070", "2aec77dd54976fd74ac7cc8641c53309").get_app_access_token)
         self.followers.each do |follower|
             @app.put_connections(follower.uid, "notifications", :template => template, :href => href)
         end
     end
-    def notify_user(user, template, href)
+    def self.notify_user(user, template, href)
        @app ||= Koala::Facebook::API.new(Koala::Facebook::OAuth.new("1898283013788070", "2aec77dd54976fd74ac7cc8641c53309").get_app_access_token)
        @app.put_connections(user.uid, "notifications", :template => template, :href => href)
+    end
+    def self.email_followed(user, follower)
+        UserMailer.follow(user, follower).deliver
     end
 end

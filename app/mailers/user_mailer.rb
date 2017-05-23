@@ -1,5 +1,7 @@
 class UserMailer < ApplicationMailer
-    def follow
-        mail :to => 'ameerjhanprof@gmail.com'
+    def follow(user, follower)
+        @user = user
+        @follower = follower
+        mail :to => user.email, :subject => "#{follower.full_name} followed you"
     end
 end

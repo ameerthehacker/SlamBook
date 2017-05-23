@@ -60,6 +60,15 @@ Rails.application.configure do
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   config.action_mailer.default_url_options = { host: 'http://theslambook.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "theslambook.herokuapp.com",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: "theslambooks@gmail.com",
+    password: "imtheslam$"
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

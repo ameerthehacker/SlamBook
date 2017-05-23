@@ -44,6 +44,9 @@ gem 'figaro', '~> 1.1', '>= 1.1.1'
 # Use koala gem for facebook graph API
 gem 'koala', '~> 3.0'
 
+# Use delayed job gem for background process
+gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.1'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

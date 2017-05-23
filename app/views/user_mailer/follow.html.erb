@@ -1,1 +1,7 @@
-<h1>Some body followed you</h1>
+Hi, <%= @user.full_name %>
+<p>
+    <%= link_to @follower.full_name, user_url(@follower) %> followed you on <%= link_to 'theSlambooks', home_url  %>
+</p>
+<p>
+    <%= link_to 'Click here', user_books_url(@follower) %> to have a look at his slambooks to do a memorable slam!
+</p>
