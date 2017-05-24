@@ -9,11 +9,6 @@
                     <div class="user-name">
                         <h4><strong><%= @user.full_name %></strong></h4>
                     </div>
-                    <% unless @user.email.blank? %>
-                        <div class="user-email">
-                            <h5><strong><%= @user.email %></strong></h5>
-                        </div>
-                    <% end %>
                     <%= @user.decorate.follow_link %>
                 </div>
             </div>
