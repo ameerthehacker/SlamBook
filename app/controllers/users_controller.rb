@@ -35,7 +35,7 @@ class UsersController < ApplicationController
         @followings = Following.paginate(:page => params[:page], :per_page => 10).where(:follower_id => @user.id)
     end
     def search
-        @users=User.where('(users.first_name LIKE ? OR users.email LIKE ?) AND users.email <> ?', "#{params[:query]}%", "#{params[:query]}%", current_user.email).paginate(:page => params[:page], :per_page => 10)
+        @users=User.where('(lower(users.first_name) LIKE ? OR lower(users.email) LIKE ?) AND users.email <> ?', "#{params[:query].downcase}%", "#{params[:query]}%", current_user.email.downcase).paginate(:page => params[:page], :per_page => 10)
     end
     def follow
         if @user.followers.where(:id => current_user).count == 0
