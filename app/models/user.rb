@@ -76,6 +76,9 @@ class User < ActiveRecord::Base
                 UserMailer.new_slam(user, follower, slam).deliver                
             end
         end
+        unless slam.book.user.email.blank?
+            UserMailer.new_slam(user, slam.book.user, slam).deliver                
+        end
     end
     def self.email_followed(user, follower)
         unless user.email.blank?
