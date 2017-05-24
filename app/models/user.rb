@@ -71,9 +71,11 @@ class User < ActiveRecord::Base
         end
     end
     def self.email_new_slam(user, slam)
-        user.followers.each do |follower|
-            unless follower.email.blank?
-                UserMailer.new_slam(user, follower, slam).deliver                
+        if slam.privacy == 'PUBLIC'
+            user.followers.each do |follower|
+                unless follower.email.blank?
+                    UserMailer.new_slam(user, follower, slam).deliver                
+                end
             end
         end
         unless slam.book.user.email.blank?
