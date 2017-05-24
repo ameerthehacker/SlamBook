@@ -9,6 +9,10 @@ class SlamsController < ApplicationController
         @slams = @book.slams.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
     end
     def new
+        if @book.user == current_user
+            flash[:danger]="You can't slam yourself!'"
+            redirect_to home_path
+        end
         @slam = @book.slams.build
         @slam.privacy = 'PRIVATE'
         @book.questions.each do |question|
