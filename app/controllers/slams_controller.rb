@@ -10,7 +10,7 @@ class SlamsController < ApplicationController
     end
     def new
         if @book.user == current_user
-            flash[:danger]="You can't slam yourself!'"
+            flash[:danger]="You can't slam yourself!"
             redirect_to home_path
         end
         @slam = @book.slams.build
