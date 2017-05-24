@@ -27,7 +27,7 @@
                     <% end %>
                 </div>
             </div>
-            <% if book.user == current_user %>
+            <% if user_signed_in? && book.user == current_user %>
                 <div class="row">
                     <div class="col-sm-1">
                         <%= render 'shared/fb_share_button', :url => user_book_url(book.user, book) %>                   
