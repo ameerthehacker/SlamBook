@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <% slam.answers.each do | answer | %>
-                        <h4><%= answer.question %></h4>
+                        <h4><strong><i><%= answer.question %></i></strong></h4>
                         <p><%= answer.answer %></p>            
                         <% if slam.status == 'NOT_READ' && slam.book.user == current_user %>
                             <% slam.status = 'READ' %>

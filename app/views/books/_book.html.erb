@@ -27,14 +27,16 @@
                     <% end %>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-1">
-                    <%= render 'shared/fb_share_button', :url => user_book_url(book.user, book) %>                   
+            <% if book.user == current_user %>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <%= render 'shared/fb_share_button', :url => user_book_url(book.user, book) %>                   
+                    </div>
+                    <div class="col-sm-1">
+                        <%= render 'shared/twitter_share_button', :text => "Hey there ! checkout my new slambook #{book.title} and slam me if u dare!", :url => user_book_url(book.user, book) %> 
+                    </div>
                 </div>
-                <div class="col-sm-1">
-                    <%= render 'shared/twitter_share_button', :text => "Hey there ! checkout my new slambook #{book.title} and slam me if u dare!", :url => user_book_url(book.user, book) %> 
-                </div>
-            </div>
+            <% end %>
             <div class="row">
                 <div class="col-sm-10">
                     <% unless book.slams.count == 0 %>
