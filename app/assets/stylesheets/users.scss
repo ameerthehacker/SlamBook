@@ -19,11 +19,12 @@
         }
         .user-details{
             position: absolute;
+            margin-left: 170px;            
+            color: #fff;
             .user-name{
-                color: #fff;
-                margin-left: 170px;
                 margin-top: 30px;
             }
+            
         }
     }
     .user-link{
@@ -51,18 +52,15 @@
             border-radius: 100%;
             position: absolute;
         }
-        .user-name{
-            margin-left: 100px;
-            position: absolute;
-        }
         .user-details{
-            margin-top :30px;
-            margin-left:100px;
-            font-size: smaller;
-        }
-        .user-follow{
-            margin-top: 10px;
             margin-left: 100px;
+            .user-info{
+                margin-top: 10px;                
+                font-size: smaller;
+            }
+            .user-follow{
+                margin-top: 10px;
+            }
         }
     }
 

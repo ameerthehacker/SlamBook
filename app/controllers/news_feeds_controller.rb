@@ -1,12 +1,10 @@
 class NewsFeedsController < ApplicationController
     def index
-        following_users = [] 
-        followings = Following.where(:follower_id => current_user)
-        followings.each do | following_user |
-            following_users << following_user.user
+        @news_feeds = current_user.news_feeds
+        if @news_feeds.count == 0
+            @news_feeds = NewsFeed.where(:user_id => current_user.fb_friends.ids).order("created_at DESC")
+        else
+            @news_feeds
         end
-
-        @news_feeds = NewsFeed.where(:user_id => following_users).order('created_at DESC')
-        @suggested_users = current_user.suggested_users
     end
 end

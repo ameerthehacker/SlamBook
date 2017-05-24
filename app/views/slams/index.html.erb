@@ -1,6 +1,16 @@
 <h1 class="text-center page-header"><%= @book.title %>'s Slams </h1>
 <div class="row">
     <div class="col-sm-12"> 
+        <%= will_paginate @slams, renderer: BootstrapPagination::Rails %>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12"> 
         <%= render @slams %> 
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12"> 
+        <%= will_paginate @slams, renderer: BootstrapPagination::Rails %>
     </div>
 </div>

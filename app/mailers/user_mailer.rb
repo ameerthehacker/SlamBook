@@ -27,4 +27,9 @@ class UserMailer < ApplicationMailer
         end
         mail :to => follower.email, :subject => subject
     end
+    def new_user(user, fb_friend)
+        @user = user
+        @fb_friend = fb_friend
+        mail :to => fb_friend.email, :subject => "#{user.full_name} just now joined theSlambooks"
+    end
 end

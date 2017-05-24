@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     before_action :set_user, :except => [ :search ]
     
     def books
-        @books = @user.books.all.order('created_at DESC')
+        @books = @user.books.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
     end
     def book
         @book = Book.find(params[:book_id])
@@ -28,20 +28,22 @@ class UsersController < ApplicationController
          end
     end
     def slams
-        @slams = Slam.all.where(:user_id => @user).order('created_at DESC')
+        @slams = Slam.where(:user_id => @user).paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
     end
     def following
         @user = User.find(params[:user_id])
-        @followings = Following.where(:follower_id => @user.id)
+        @followings = Following.paginate(:page => params[:page], :per_page => 10).where(:follower_id => @user.id)
     end
     def search
-        @users=User.where('(users.first_name LIKE ? OR users.email LIKE ?) AND users.email <> ?', "#{params[:query]}%", "#{params[:query]}%", current_user.email)
+        @users=User.where('(users.first_name LIKE ? OR users.email LIKE ?) AND users.email <> ?', "#{params[:query]}%", "#{params[:query]}%", current_user.email).paginate(:page => params[:page], :per_page => 10)
     end
     def follow
-        @user.followers<<current_user
-        User.delay.notify_user(@user, "#{current_user.full_name} followed you on theSlamBook, view slambooks to slam 
-        now!", user_books_path(current_user))
-        User.delay.email_followed(@user, current_user)        
+        if @user.followers.where(:id => current_user).count == 0
+            @user.followers<<current_user
+            User.delay.notify_user(@user, "#{current_user.full_name} followed you on theSlamBook, view slambooks to slam 
+            now!", user_books_path(current_user))
+            User.delay.email_followed(@user, current_user)        
+        end
         respond_to do |format|
             format.js
         end

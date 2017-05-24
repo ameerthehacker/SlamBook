@@ -58,7 +58,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_mailer.default_url_options = { host: 'http://theslambook.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'http://theslambooks.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",

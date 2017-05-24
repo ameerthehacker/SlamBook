@@ -1,3 +1,13 @@
+<div class="row">
+    <div class="col-sm-12"> 
+        <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+    </div>
+</div>
 <div class="users">
     <%= render @users %>
+</div>
+<div class="row">
+    <div class="col-sm-12"> 
+        <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+    </div>
 </div>

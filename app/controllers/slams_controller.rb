@@ -6,7 +6,7 @@ class SlamsController < ApplicationController
     before_action :slam_or_book_owner, :only => [ :destroy ]    
     
     def index 
-        @slams = @book.slams.all.order('created_at DESC')
+        @slams = @book.slams.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
     end
     def new
         @slam = @book.slams.build

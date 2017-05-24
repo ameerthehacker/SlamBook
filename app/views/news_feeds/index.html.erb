@@ -6,20 +6,19 @@
         <% end %>
     </div>
 </div>
-<% if @suggested_users.count > 1 %>
-    <div class="row">
-        <div class="col-sm-12">
-            <h4>People you may know</h4>
-        </div>
-        <div class="users">
-            <% @suggested_users.each do |user| %>
-                <% if Following.where(:user_id => user.id, :follower_id => current_user.id).count == 0 && user!=current_user %>        
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <%= render user %>
-                    </div>
-                <% end %>
-            <% end %>
-        </div>
-    </div>        
-<% end %>
-<%= render @news_feeds %>
+<div class="suggested-users">
+    <%= render 'shared/suggested_users' %>
+</div>
+<div class="row">
+    <div class="col-sm-12"> 
+        <%= will_paginate @news_feeds, renderer: BootstrapPagination::Rails %>
+    </div>
+</div>
+<div class="news-feeds">
+    <%= render @news_feeds %>
+</div>
+<div class="row">
+    <div class="col-sm-12"> 
+        <%= will_paginate @news_feeds, renderer: BootstrapPagination::Rails %>
+    </div>
+</div>

@@ -1,1 +1,5 @@
 $("#follow-user-<%= @user.id %>").html("<%= j @user.decorate.follow_link %>");
+if($(".news-feeds").length==1){
+    $(".suggested-users").html("<%= j render 'shared/suggested_users' %>");
+    $(".news-feeds").html("<%= j render current_user.news_feeds %>");    
+}

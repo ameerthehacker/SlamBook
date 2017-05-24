@@ -1,0 +1,15 @@
+<% @suggested_users = current_user.suggested_users %>
+<% unless @suggested_users.count == 0 %>
+    <div class="row">
+        <div class="col-sm-12">
+            <h4>People you may know</h4>
+        </div>
+        <div class="users">
+            <% @suggested_users.each do |user| %>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <%= render user %>
+                </div>
+            <% end %>
+        </div>
+    </div>        
+<% end %>

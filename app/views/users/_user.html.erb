@@ -2,13 +2,13 @@
     <div class="user-avatar">
         <%= user.decorate.avatar_image(90) %>
     </div>
-    <div class="user-name">
-        <strong><%= user.decorate.profile_link %></strong>
-    </div>
-    <div class="user-details">
-         <%= pluralize(Following.where(:follower_id => user).count,'Following') %> | <%= pluralize(user.followers.count,'Follower') %> | <%= pluralize(user.books.count,'SlamBook') %> | <%= pluralize(user.slams.count,'Slam') %>
-    </div>
-    <div class="user-follow" id="follow-user-<%= user.id %>">
+    <div class="user-details"> 
+        <div class="user-name">
+            <strong><%= user.decorate.profile_link %></strong>
+        </div>
+        <div class="user-info">
+            <%= pluralize(Following.where(:follower_id => user).count,'Following') %> | <%= pluralize(user.followers.count,'Follower') %> | <%= pluralize(user.books.count,'SlamBook') %> | <%= pluralize(user.slams.count,'Slam') %>
+        </div>
         <%= user.decorate.follow_link %>
     </div>
 </div>
