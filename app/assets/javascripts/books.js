@@ -4,7 +4,8 @@
 $(document).on('turbolinks:load',function(){
     $('#frm-new-book').on('click', '.btn-add-question', function(evt){
         evt.preventDefault();
-        $(".questions").append("<div class='question'>" + $(this).data('fields') + "</div>");
+        var regex = new RegExp($(this).attr('data-id'), 'g');   
+        $(".questions").append("<div class='question'>" + $(this).data('fields').replace(regex, new Date().getTime()) + "</div>");
     }); 
     $('#frm-new-book').on('click', '.btn-remove-question', function(evt){
         evt.preventDefault();
