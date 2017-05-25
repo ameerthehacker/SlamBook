@@ -1,5 +1,5 @@
 <% @suggested_users = current_user.suggested_users %>
-<% unless @suggested_users.count == 0 %>
+<% unless @suggested_users.empty? %>
     <div class="row">
         <div class="col-sm-12">
             <h4>People you may know</h4>
