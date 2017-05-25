@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170523095424) do
+ActiveRecord::Schema.define(version: 20170525175054) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "slam_id",    limit: 4
@@ -80,14 +80,14 @@ ActiveRecord::Schema.define(version: 20170523095424) do
   create_table "users", force: :cascade do |t|
     t.integer  "uid",              limit: 8
     t.string   "first_name",       limit: 255,   null: false
-    t.string   "last_name",        limit: 255,   null: false
+    t.string   "last_name",        limit: 255
     t.text     "description",      limit: 65535
     t.integer  "age",              limit: 4
     t.string   "gender",           limit: 255
     t.string   "city",             limit: 255
     t.string   "college",          limit: 255
     t.text     "address",          limit: 65535
-    t.string   "email",            limit: 255,   null: false
+    t.string   "email",            limit: 255
     t.string   "avatar",           limit: 255
     t.string   "provider",         limit: 255
     t.string   "oauth_token",      limit: 255
