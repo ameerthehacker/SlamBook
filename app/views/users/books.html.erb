@@ -3,6 +3,15 @@
         <%= will_paginate @books, renderer: BootstrapPagination::Rails %>
     </div>
 </div>
+<% if user_signed_in? && current_user == @user && @books.count == 0 %>
+    <div class="row">
+        <div class="col-sm-2">
+            <%= link_to new_book_path, :class => 'btn btn-success' do %>
+                <i class="fa fa-plus"></i> Create SlamBook Now
+            <% end %>
+        </div>
+    </div>
+<% end %>
 <div class="row"> 
     <div class="col-sm-12">
         <%= render @books %>

@@ -3,9 +3,13 @@
         <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
     </div>
 </div>
-<div class="users">
-    <%= render @users %>
-</div>
+<% unless @users.count ==0 %>
+    <div class="users">
+        <%= render @users %>
+    </div>
+<% else %>
+    <h1>No users found!</h1>
+<% end %>
 <div class="row">
     <div class="col-sm-12"> 
         <%= will_paginate @users, renderer: BootstrapPagination::Rails %>

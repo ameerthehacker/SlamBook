@@ -9,17 +9,23 @@
                     <div class="user-name">
                         <h4><strong><%= @user.full_name %></strong></h4>
                     </div>
+                    <div class="user-info">
+                        <%= pluralize(Following.where(:follower_id => @user).count,'Following') %> | <%= pluralize(@user.followers.count,'Follower') %> | <%= pluralize(@user.books.count,'SlamBook') %> | <%= pluralize(@user.slams.count,'Slam') %>
+                    </div>
                     <%= @user.decorate.follow_link %>
                 </div>
             </div>
             <div class="col-sm-4 user-link">
                 <%= link_to 'My SlamBooks', user_books_path(@user) %>
+                <div class="badge"><%= @user.books.count %></div>
             </div>
             <div class="col-sm-4 user-link">
-                <%= link_to 'My Slams', user_slams_path(@user) %>                    
+                <%= link_to 'My Slams', user_slams_path(@user) %>  
+                <div class="badge"><%= @user.slams.count %></div>                  
             </div>
             <div class="col-sm-4 user-link">
-                <%= link_to 'My Slamies', user_following_path(@user) %>                    
+                <%= link_to 'My Slamies', user_following_path(@user) %> 
+                <div class="badge"><%= @user.following_users.count %></div>                                           
             </div>
         </div>
     </div>
