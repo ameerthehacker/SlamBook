@@ -1,4 +1,5 @@
 class NewsFeedsController < ApplicationController
+    before_action :authenticate_user!
     def index
         @news_feeds = current_user.news_feeds.paginate(:page => params[:page], :per_page => 10)
         if @news_feeds.count == 0
