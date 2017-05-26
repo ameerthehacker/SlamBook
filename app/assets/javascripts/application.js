@@ -15,3 +15,9 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+$(document).on('turbolinks:load',function(){
+    $(".user").on('click', '.btn-follow-unfollow', function(evt){
+        $(this).children(".fa-spinner").removeClass("hidden");
+    });
+});

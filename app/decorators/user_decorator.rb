@@ -22,12 +22,16 @@ class UserDecorator < Draper::Decorator
   def follow_link
     if h.user_signed_in?
       h.content_tag :div, :class => 'user-follow', :id => "follow-user-#{model.id}" do
-        if Following.where(:follower_id=>h.current_user, :user_id=>user).count==0 
+        if Following.where(:follower_id => h.current_user, :user_id => user).count==0 
           unless h.current_user.id == user.id 
-            h.link_to 'Follow', h.user_follow_path(user.id), :remote=>true ,:class=>'btn btn-xs btn-success'
+            h.link_to h.user_follow_path(user.id), :remote=>true ,:class=>'btn btn-xs btn-success btn-follow-unfollow' do
+              h.icon 'spinner fa-pulse hidden', "Follow"
+            end
           end 
         else 
-          h.link_to 'Unfollow', h.user_unfollow_path(user.id), :remote=>true ,:class=>'btn btn-xs btn-danger'
+          h.link_to h.user_unfollow_path(user.id), :remote=>true ,:class=>'btn btn-xs btn-danger btn-follow-unfollow' do
+            h.icon 'spinner fa-pulse hidden', "Unfollow", :id => 'fa-spin'
+          end
         end
       end
     end
