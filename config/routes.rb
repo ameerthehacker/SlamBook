@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   match '/users/:user_id', :to => 'users#books', :as => :user, :via => [:get, :post]
   get '/users/:user_id/slams', :to => 'users#slams', :as => :user_slams
   get '/users/:user_id/following', :to => 'users#following', :as => :user_following
+  get '/users/:user_id/followers', :to => 'users#followers', :as => :user_followers
+  
   # Follow a user
   get '/users/:user_id/follow', :to=>'users#follow', :as => :user_follow
   # UnFollow a user

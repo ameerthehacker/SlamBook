@@ -15,17 +15,21 @@
                     <%= @user.decorate.follow_link %>
                 </div>
             </div>
-            <div class="col-sm-4 user-link">
+            <div class="col-sm-3 user-link">
                 <%= link_to 'My SlamBooks', user_books_path(@user) %>
                 <div class="badge"><%= @user.books.count %></div>
             </div>
-            <div class="col-sm-4 user-link">
+            <div class="col-sm-3 user-link">
                 <%= link_to 'My Slams', user_slams_path(@user) %>  
                 <div class="badge"><%= @user.slams.count %></div>                  
             </div>
-            <div class="col-sm-4 user-link">
-                <%= link_to 'My Slamies', user_following_path(@user) %> 
+            <div class="col-sm-3 user-link">
+                <%= link_to 'Following', user_following_path(@user) %> 
                 <div class="badge"><%= @user.following_users.count %></div>                                           
+            </div>
+            <div class="col-sm-3 user-link">
+                <%= link_to 'Followers', user_followers_path(@user) %> 
+                <div class="badge"><%= @user.followers.count %></div>                                           
             </div>
         </div>
     </div>
