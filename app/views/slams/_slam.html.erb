@@ -1,7 +1,12 @@
 <% if slam.book.user == current_user || slam.privacy == 'PUBLIC' || slam.user == current_user %>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3><%= slam.user.full_name %> Said</h3>
+            <% if slam.privacy == 'PUBLIC' %>
+                <% @privacy = 'publicly' %>
+            <% elsif slam.privacy == 'PRIVATE' %>
+                <% @privacy = 'privately' %>            
+            <% end %>
+            <h3><%= slam.user.full_name %> Said <%= slam.book.user == current_user || slam.user == current_user ? @privacy : "" %> </h3>
         </div>
         <div class="panel-body">
             <div class="row">
