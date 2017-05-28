@@ -5,6 +5,6 @@ module ApplicationHelper
         fields=f.fields_for association, new_object, :child_index => id do |builder|
             render(association.to_s.singularize + "_fields", :builder => builder)
         end
-        link_to name, '#', :class=>'btn btn-xs btn-primary btn-add-' + association.to_s.singularize, :data=>{ :id => id, :fields=>fields.gsub("\n", "") }
+        link_to name, '#', :class=>'btn btn-xs btn-primary btn-add-' + association.to_s.singularize, :data=>{ :id => id, :index => f.index, :fields=>fields.gsub("\n", "") }
     end
 end

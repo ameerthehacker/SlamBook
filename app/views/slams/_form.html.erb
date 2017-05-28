@@ -1,13 +1,31 @@
 <%= render 'shared/errors', :obj => @slam %>
 <%= form_for [ @book, @slam ], :html => { :class => 'form-horizontal' } do |f| %>
     <%= f.fields_for :answers do |builder| %>
+        <%= builder.fields_for :answer_options do |options_builder| %>
+            <%= options_builder.hidden_field :option %> 
+        <% end %>
         <div class="form-group">
             <%= builder.label :answer, builder.object.question, :class=>'col-sm-12' %>  
-            <%= builder.hidden_field :question, :value => builder.object.question %>                    
+            <%= builder.hidden_field :question, :value => builder.object.question %>   
+            <%= builder.hidden_field :answer_type, :value => builder.object.answer_type %>   
         </div>
         <div class="form-group">
             <div class="col-sm-12">
-                <%= builder.text_area :answer, :class=>'form-control', :placeholder => 'Write your answer here' %>                
+                <% if builder.object.answer_type == 'textarea' %>
+                    <%= builder.text_area :answer, :class=>'form-control', :placeholder => 'Write your answer here' %>
+                <% elsif builder.object.answer_type == 'radio' %>
+                    <% builder.object.answer_options.each do |answer_option| %>
+                        <label class="radio-inline">
+                            <%= builder.radio_button :answer, answer_option.option %> <%= answer_option.option %>
+                        </label>
+                    <% end %>
+                <% elsif builder.object.answer_type == 'checkbox' %>
+                    <% builder.object.answer_options.each do |answer_option| %>
+                        <label class="checkbox-inline">
+                            <%= builder.check_box :answer_checkbox, { :multiple => true }, answer_option.option, false %> <%= answer_option.option %>
+                        </label>
+                    <% end %>
+                <% end %> 
             </div>
         </div>
     <% end %>

@@ -10,4 +10,5 @@ class Book < ActiveRecord::Base
     belongs_to :user
     # Nested attributes
     accepts_nested_attributes_for :questions, :allow_destroy => true
+    validates_associated :questions
 end

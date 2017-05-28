@@ -7,7 +7,8 @@ class BooksController < ApplicationController
     end
     def new 
         @book = Book.new
-        @book.questions.build
+        question = @book.questions.build     
+        question.question_options.build
     end
     def create
         @book = Book.new(get_params)
@@ -24,6 +25,11 @@ class BooksController < ApplicationController
         end
     end
     def edit
+        @book.questions.each do |question|
+            if question.question_type == 'textarea'
+                question.question_options.build
+            end
+        end
     end
     def update
         if @book.update(get_params)
@@ -45,7 +51,7 @@ class BooksController < ApplicationController
     
 private
     def get_params
-        params.require(:book).permit(:title, :description, :questions_attributes => [ :id, :question, :_destroy ])
+        params.require(:book).permit(:title, :description, :questions_attributes => [ :id, :question, :_destroy, :question_type, :question_options_attributes => [ :id, :option, :_destroy ] ])
     end
     def set_book
         @book = current_user.books.find(params[:id])

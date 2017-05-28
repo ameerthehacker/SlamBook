@@ -18,6 +18,10 @@ class SlamsController < ApplicationController
         @book.questions.each do |question|
             answer = @slam.answers.build
             answer.question = question.question
+            answer.answer_type = question.question_type
+            question.question_options.each do |question_option| 
+                answer.answer_options.build({ :option => question_option.option })
+            end
         end
     end
     def create
@@ -80,6 +84,6 @@ private
         @slam = Slam.find(params[:id])
     end
     def get_params
-        params.require(:slam).permit(:privacy, :answers_attributes => [:id, :question, :answer])
+        params.require(:slam).permit(:privacy, :answers_attributes => [:id, :question, :answer, :answer_type, :answer_radio, :answer_checkbox => [], :answer_options_attributes => [:id, :option]])
     end
 end

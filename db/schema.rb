@@ -11,14 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170525175054) do
+ActiveRecord::Schema.define(version: 20170528081952) do
+
+  create_table "answer_options", force: :cascade do |t|
+    t.integer  "answer_id",  limit: 4
+    t.string   "option",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "answers", force: :cascade do |t|
-    t.integer  "slam_id",    limit: 4
-    t.string   "question",   limit: 255
-    t.text     "answer",     limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "slam_id",     limit: 4
+    t.string   "question",    limit: 255
+    t.text     "answer",      limit: 65535
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.string   "answer_type", limit: 255,   default: "textarea"
   end
 
   create_table "books", force: :cascade do |t|
@@ -61,11 +69,19 @@ ActiveRecord::Schema.define(version: 20170525175054) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "question_options", force: :cascade do |t|
+    t.integer  "question_id", limit: 4
+    t.string   "option",      limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
   create_table "questions", force: :cascade do |t|
-    t.string   "question",   limit: 255
-    t.integer  "book_id",    limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "question",      limit: 255
+    t.integer  "book_id",       limit: 4
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.string   "question_type", limit: 255, default: "textarea"
   end
 
   create_table "slams", force: :cascade do |t|

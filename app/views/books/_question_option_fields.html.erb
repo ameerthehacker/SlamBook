@@ -1,0 +1,11 @@
+<div class="col-md-2 col-sm-4">
+    <div class="input-group">
+        <%= builder.text_field :option, :class => 'form-control' %>
+        <div class="input-group-btn">
+            <%= builder.hidden_field :_destroy %>
+            <%= link_to '#', :class => 'btn btn-danger btn-remove-option' do %>
+                <i class="fa fa-trash-o"></i>
+            <% end %>
+        </div>
+    </div>
+</div>
