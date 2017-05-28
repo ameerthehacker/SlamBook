@@ -1,7 +1,7 @@
 class Answer < ActiveRecord::Base
     # Validations
     validates :question, :presence => true
-    validates :answer, :presence => true, :length => { :minimum => 2, :maximum => 120 }  
+    validates :answer, :presence => true, :length => { :maximum => 120 }  
     # Associations
     belongs_to :slam
     has_many :answer_options, :dependent => :destroy
