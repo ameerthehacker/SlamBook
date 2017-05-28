@@ -36,7 +36,7 @@
                         <%= render 'shared/twitter_share_button', :text => "Hey there ! checkout my new slambook #{book.title} and slam me if u dare!", :url => user_book_url(book.user, book) %> 
                     </div>
                     <div class="col-sm-1">
-                        <a href="whatsapp://send?text=<%= user_book_path(book) %>" class="btn btn-xs btn-dark" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i> Share</a>
+                        <a href="whatsapp://send?text=<%= user_book_path(book.user, book) %>" class="btn btn-xs btn-dark" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i> Share</a>
                     </div>
                 </div>
             <% end %>
