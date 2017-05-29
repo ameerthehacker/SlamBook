@@ -5,6 +5,7 @@
             <%= link_to book_slams_path(book), :class => 'btn btn-success' do %>
                 <span class="badge"><%= book.slams.where(:status => 'NOT_READ').count %></span> New Slams
             <% end %>
+            <button class="btn btn-warning btn-copy-book-url" data-clipboard-action="copy" data-clipboard-data="<%= user_book_url(book.user, book) %>"><i class="fa-copy-icon fa fa-clipboard"></i> <span class="btn-copy-book-url-text">Copy Link</span></button>
         <% end %>
         </h4>
     </div>
@@ -30,7 +31,7 @@
             <% if user_signed_in? && book.user == current_user %>
                 <div class="row">
                     <div class="col-sm-1">
-                        <%= render 'shared/fb_share_button', :url => user_book_url(book.user, book) %>                   
+                        <%= render 'shared/fb_share_button', :url => user_book_url(book.user, book) %>               
                     </div>
                     <div class="col-sm-1">
                         <%= render 'shared/twitter_share_button', :text => "Hey there ! checkout my new slambook #{book.title} and slam me if u dare!", :url => user_book_url(book.user, book) %> 

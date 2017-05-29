@@ -7,6 +7,11 @@
                 <% @privacy = 'privately' %>            
             <% end %>
             <h3><%= slam.user == current_user ? "You" : slam.user.full_name %> Said <%= slam.book.user == current_user || slam.user == current_user ? @privacy : "" %> </h3>
+            <% if slam.user == current_user %>
+                <% if slam.status == 'READ' %>
+                    <i class="fa fa-check"></i> Read
+                <% end %>
+            <% end %>
         </div>
         <div class="panel-body">
             <div class="row">

@@ -52,6 +52,7 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.3)
     byebug (9.0.6)
+    clipboard-rails (1.6.1)
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
     debug_inspector (0.0.3)
@@ -201,6 +202,7 @@ DEPENDENCIES
   better_errors (~> 2.1, >= 2.1.1)
   bootstrap-sass (~> 3.3, >= 3.3.7)
   byebug
+  clipboard-rails (~> 1.6, >= 1.6.1)
   delayed_job_active_record (~> 4.1, >= 4.1.1)
   draper (~> 2.1)
   figaro (~> 1.1, >= 1.1.1)

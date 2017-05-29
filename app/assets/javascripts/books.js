@@ -34,4 +34,20 @@ $(document).on('turbolinks:load',function(){
             $("." + index).removeClass("hidden"); 
         }
     });
+    var clipboard = new Clipboard('.btn-copy-book-url', {
+        text: function(trigger){
+            return $(trigger).data('clipboard-data');
+        }
+    });
+   
+    clipboard.on('success', function(evt){
+        $(evt.trigger).children('.fa-copy-icon').removeClass('fa-clipboard');
+        $(evt.trigger).children('.fa-copy-icon').addClass('fa-check');        
+        $(evt.trigger).children('.btn-copy-book-url-text').text('Copied!');
+        setTimeout(function(){
+            $(evt.trigger).children('.fa-copy-icon').removeClass('fa-check');               
+            $(evt.trigger).children('.fa-copy-icon').addClass('fa-clipboard');
+            $(evt.trigger).children('.btn-copy-book-url-text').text('Copy Link');            
+        },2000);
+    });
 });

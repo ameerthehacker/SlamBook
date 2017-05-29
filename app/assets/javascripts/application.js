@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require clipboard
 //= require_tree .
 
 $(document).on('turbolinks:load',function(){
