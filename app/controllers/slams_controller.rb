@@ -14,7 +14,7 @@ class SlamsController < ApplicationController
             redirect_to home_path
         end
         @slam = @book.slams.build
-        @slam.privacy = 'PRIVATE'
+        @slam.privacy = 'PUBLIC'
         @book.questions.each do |question|
             answer = @slam.answers.build
             answer.question = question.question
