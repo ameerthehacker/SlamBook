@@ -1,13 +1,12 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h4><%= book.title %> 
-        <% if book.user == current_user %>
+        <h4><%= book.title %> </h4>
+         <% if book.user == current_user %>
             <%= link_to book_slams_path(book), :class => 'btn btn-success' do %>
                 <span class="badge"><%= book.slams.where(:status => 'NOT_READ').count %></span> New Slams
             <% end %>
             <button class="btn btn-warning btn-copy-book-url" data-clipboard-action="copy" data-clipboard-data="<%= user_book_url(book.user, book) %>"><i class="fa-copy-icon fa fa-clipboard"></i> <span class="btn-copy-book-url-text">Copy Link</span></button>
         <% end %>
-        </h4>
     </div>
     <div class="panel-body">
         <div class="container-fluid">
@@ -28,16 +27,12 @@
                     <% end %>
                 </div>
             </div>
-            <% if user_signed_in? && book.user == current_user %>
+            <% if book.user == current_user %>
                 <div class="row">
-                    <div class="col-sm-1">
-                        <%= render 'shared/fb_share_button', :url => user_book_url(book.user, book) %>               
-                    </div>
-                    <div class="col-sm-1">
+                    <div class="col-sm-12">
+                        <%= render 'shared/fb_share_button', :url => user_book_url(book.user, book) %>              
                         <%= render 'shared/twitter_share_button', :text => "Hey there ! checkout my new slambook #{book.title} and slam me if u dare!", :url => user_book_url(book.user, book) %> 
-                    </div>
-                    <div class="col-sm-1">
-                        <a href="whatsapp://send?text=<%= user_book_url(book.user, book) %>" class="btn btn-xs btn-dark" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i> Share</a>
+                        <a href="whatsapp://send?text=<%= user_book_url(book.user, book) %>" class="btn btn-xs btn-success" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i> Share</a>
                     </div>
                 </div>
             <% end %>
