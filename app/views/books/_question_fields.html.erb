@@ -17,10 +17,10 @@
             <%= builder.radio_button :question_type, 'textarea', :checked => builder.object.question_type == 'textarea', :class => 'rad-question-type', :data => { :index => builder.index } %>Paragaraph
         </label>
         <label class="radio-inline">
-            <%= builder.radio_button :question_type, 'radio', :checked => builder.object.question_type == 'radio' , :class => 'rad-question-type', :data => { :index => builder.index } %>Single Word Answer
+            <%= builder.radio_button :question_type, 'radio', :checked => builder.object.question_type == 'radio' , :class => 'rad-question-type', :data => { :index => builder.index } %>Single Answer
         </label>
         <label class="radio-inline">
-            <%= builder.radio_button :question_type, 'checkbox', :checked => builder.object.question_type == 'checkbox', :class => 'rad-question-type', :data => { :index => builder.index } %>Multiple Word Answer
+            <%= builder.radio_button :question_type, 'checkbox', :checked => builder.object.question_type == 'checkbox', :class => 'rad-question-type', :data => { :index => builder.index } %>Multiple Answers
         </label>
     </div>
 </div>
