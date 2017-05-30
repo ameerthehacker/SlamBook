@@ -7,6 +7,11 @@ class SlamsController < ApplicationController
     
     def index 
         @slams = @book.slams.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+        if !user_signed_in? || current_user.books.count == 0
+            @modal = true
+        else
+            @modal = false
+        end
     end
     def new
         if @book.user == current_user

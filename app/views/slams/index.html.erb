@@ -14,3 +14,23 @@
         <%= will_paginate @slams, renderer: BootstrapPagination::Rails %>
     </div>
 </div>
+<% if @modal == true %>
+    <div class="modal fade" id="modal-new-slambook">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss = "modal">&times;</button>
+                    <h4 class="modal-title">No slambooks yet?</h4>
+                </div>
+                <div class="modal-body">
+                    <%= link_to 'Create your own Slambook Now!', new_book_path, :class => 'btn btn-success form-control' %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        setTimeout(function(){
+            $("#modal-new-slambook").modal('show');
+        }, 1500);
+    </script>
+<% end %>
