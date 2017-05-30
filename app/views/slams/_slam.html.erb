@@ -7,6 +7,7 @@
                 <% @privacy = 'privately' %>            
             <% end %>
             <h3><%= slam.user == current_user ? "You" : slam.user.full_name %> Said <%= slam.book.user == current_user || slam.user == current_user ? @privacy : "" %> </h3>
+            <%= link_to slam.book.user == current_user ? "Your" : "#{slam.book.user.full_name}'s", user_path(slam.book.user), :class => 'normal-link' %> slambook <%= link_to slam.book.title, user_book_path(slam.book.user, slam.book), :class => 'normal-link' %>
             <% if slam.user == current_user %>
                 <% if slam.status == 'READ' %>
                     <i class="fa fa-check"></i> Read
