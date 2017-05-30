@@ -18,7 +18,7 @@ class BooksController < ApplicationController
             news_feed = NewsFeed.new({ :user => current_user, :book => @book, :action => 'NEW_BOOK' })
             news_feed.save            
             User.delay.notify_followers(current_user, "#{current_user.full_name} created a new slambook #{@book.title}, slam now!", new_book_slam_path(@book))
-            User.email_new_book(current_user, @book)
+            User.delay.email_new_book(current_user, @book)
             redirect_to books_path
         else
             render :new
