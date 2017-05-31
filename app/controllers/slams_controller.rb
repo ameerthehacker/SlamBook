@@ -38,8 +38,10 @@ class SlamsController < ApplicationController
             news_feed.save
             User.delay.notify_user(@book.user, "#{current_user.full_name} slammed on your slambook #{@book.title}",
             book_slam_path(@book, @slam))
-            User.delay.notify_followers(@book.user, "#{current_user.full_name} slammed on #{@book.user.full_name} slambook #{@book.title}",
-            book_slam_path(@book, @slam)) 
+            if @slam.privacy == 'PUBLIC'
+                User.delay.notify_followers(@book.user, "#{current_user.full_name} slammed on #{@book.user.full_name} slambook #{@book.title}",
+                book_slam_path(@book, @slam)) 
+            end
             User.delay.email_new_slam(current_user, @slam)
             redirect_to book_slams_path(@book)
         else
