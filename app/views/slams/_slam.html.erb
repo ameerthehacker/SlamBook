@@ -40,4 +40,21 @@
             </div>
         </div>
     </div>
+    <% if user_signed_in? || slam.comments.count != 0 %>
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="comments-title"><strong> Comments </strong></h4>        
+                <div class="comments" id='<%= "slam-#{slam.id}-comments" %>'>
+                    <%= render slam.comments.where(:reply_to => nil).order('created_at DESC') %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+    <% if user_signed_in? %>
+        <div class="row">
+            <div class="col-sm-12">
+                <%= render 'comments/form', :slam => slam, :comment => slam.comments.build, :remote => true %>
+            </div>
+        </div>
+    <% end %>
 <% end %>

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
     has_many :news_feeds, :dependent => :destroy
     has_many :followings, :dependent => :destroy
     has_many :followers, :through => :followings
+    has_many :comments, :dependent => :destroy
 
 
     def full_name

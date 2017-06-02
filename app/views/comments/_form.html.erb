@@ -1,0 +1,20 @@
+<% comment_error_id = comment.reply_to.nil? ? "slam-#{slam.id}-comment-errors" : "slam-#{slam.id}-comment-#{comment.reply_to}-reply-errors" %>
+<% comment_id = comment.reply_to.nil? ? "slam-#{slam.id}-comment" : "slam-#{slam.id}-comment-#{comment.reply_to}-reply" %>
+<div id='<%= comment_error_id  %>'>
+    <%= render 'shared/errors', :obj => comment %>
+</div>
+<%= form_for [ slam.book, slam, comment ], :html => { :class => 'form-horizontal' }, :remote => remote do |f| %>
+    <% unless comment.reply_to.nil? %>
+        <%= f.hidden_field :reply_to, :value => comment.reply_to %>
+    <% end %>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <%= f.text_area :comment, :class => 'form-control', :placeholder => 'Type your comment here', :id => comment_id %>        
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2">
+            <%= f.submit :class => 'btn btn-xs btn-success' %>
+        </div>
+    </div>
+<% end %>

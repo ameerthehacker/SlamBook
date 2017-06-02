@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resources :books do
     post '/slams/new', :to => 'slams#new'
     post '/slams/:id', :to => 'slams#show'
-    resources :slams
+    resources :slams do
+      resources :comments
+    end
   end
   get '/users/search', :to => 'users#search', :as => :user_search
   match '/users/:user_id/books', :to => 'users#books', :as => :user_books, :via => [:get, :post]

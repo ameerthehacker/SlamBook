@@ -1,0 +1,30 @@
+<div class="comment" id = '<%= "comment-#{comment.id}" %>'>
+    <div class="comment-body">
+        <div class="content">
+            <h5><strong><%= comment.user.full_name %></strong></h5>
+            <%= comment.comment %>
+        </div>
+        <div class="comment-time">
+            <%= time_ago_in_words comment.created_at %> ago
+        </div>
+        <div class="comment-actions">
+            <% if user_signed_in? %>
+                <% if current_user == comment.user %>
+                    <%= link_to 'Edit', edit_book_slam_comment_path(comment.slam.book, comment.slam, comment), :class => 'btn btn-xs btn-warning', :remote => true %>
+                <% end %>
+                <% if current_user == comment.user || current_user == comment.slam.user %>
+                    <%= link_to 'Delete', book_slam_comment_path(comment.slam.book, comment.slam, comment), :class => 'btn btn-xs   btn-danger', :data => { :method => :delete, :confirm => 'Are you sure to delete this comment?' } ,:remote => true %>   
+                <% end %>
+                <%= link_to 'Reply', '#', :class => 'btn btn-xs btn-success btn-reply-comment', :data => { :form => "slam-#{comment.slam.id}-comment-#{comment.id}-reply-form" } %>
+            <% end %>
+        </div>     
+    </div>
+    <div class="comment-reply">
+        <div class="hidden" id='<%= "slam-#{comment.slam.id}-comment-#{comment.id}-reply-form" %>'>
+            <%= render 'comments/form', :slam => comment.slam, :comment => comment.replies.build, :remote => true %>             
+        </div>
+        <div class="comments" id='<%= "slam-#{comment.slam.id}-comment-#{comment.id}-replies" %>'>
+            <%= render comment.replies.order('id ASC') %>
+        </div>
+    </div>
+</div>
