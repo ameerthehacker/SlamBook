@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
     before_action :user_signed_in
     def index
-        session[:user_id]="9"
     end
 private
     def user_signed_in
