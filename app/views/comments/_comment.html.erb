@@ -1,8 +1,13 @@
 <div class="comment" id = '<%= "comment-#{comment.id}" %>'>
     <div class="comment-body">
         <div class="content">
-            <h5><strong><%= comment.user.full_name %></strong></h5>
-            <%= comment.comment %>
+            <div class="user-avatar">
+                <%= comment.user.decorate.avatar_image(40) %>
+            </div>
+            <div class="user-comment">
+                <h5><strong><%= comment.user.full_name %></strong></h5>
+                <%= comment.comment %>
+            </div>
         </div>
         <div class="comment-time">
             <%= time_ago_in_words comment.created_at %> ago

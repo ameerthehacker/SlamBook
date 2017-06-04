@@ -8,7 +8,14 @@
     .comment{
         .comment-body{
             .content{
-                font-size: small;
+                .user-avatar{
+                    position: absolute;
+                }
+                .user-comment{
+                    margin-left: 50px;
+                    font-size: small;       
+                    word-break: break-all;             
+                }
             }
             .comment-time{
                 font-size: x-small;
