@@ -45,8 +45,16 @@
             <div class="col-sm-12">
                 <h4 class="comments-title"><strong> Comments </strong></h4>        
                 <div class="comments" id='<%= "slam-#{slam.id}-comments" %>'>
-                    <%= render slam.comments.where(:reply_to => nil).order('created_at DESC') %>
+                    <%= render slam.comments.where(:reply_to => nil).order('created_at DESC').limit(3) %>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <%= pluralize slam.comments.where(:reply_to => nil).count, 'comment' %>
+                <% if slam.comments.count > 2 %>
+                    <%= link_to 'View all', book_slam_comments_path(slam.book, slam), :remote => true %>
+                <% end %>
             </div>
         </div>
     <% end %>

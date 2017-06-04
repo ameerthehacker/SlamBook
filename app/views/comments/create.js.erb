@@ -1,6 +1,6 @@
-<% comment_error_id = @comment.reply_to.nil? ? "slam-#{@slam.id}-comment-errors" : "slam-#{@slam.id}-comment-#{@comment.reply_to}-reply-errors" %>
-<% comment_id = @comment.reply_to.nil? ? "slam-#{@slam.id}-comment" : "slam-#{@slam.id}-comment-#{@comment.reply_to}-reply" %>
-<% comments_id = @comment.reply_to.nil? ? "slam-#{@slam.id}-comments" : "slam-#{@slam.id}-comment-#{@comment.reply_to}-replies" %>
+<% comment_error_id = @comment.reply_to.nil? ? "comment-errors" : "comment-#{@comment.reply_to}-reply-errors" %>
+<% comment_id = @comment.reply_to.nil? ? "slam-#{@slam.id}-comment" : "comment-#{@comment.reply_to}-reply" %>
+<% comments_id = @comment.reply_to.nil? ? "slam-#{@slam.id}-comments" : "comment-#{@comment.reply_to}-replies" %>
 <% if @comment.new_record? %>
     $('<%= "##{comment_error_id}" %>').html("<%= j render 'shared/errors', :obj => @comment %>");
 <% else %>

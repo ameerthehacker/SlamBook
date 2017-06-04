@@ -8,3 +8,4 @@ $(document).on('turbolinks:load',function(){
         $("#" + formID).removeClass('hidden');
     });
 });
+

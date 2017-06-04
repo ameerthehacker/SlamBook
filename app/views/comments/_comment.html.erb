@@ -15,15 +15,15 @@
                 <% if current_user == comment.user || current_user == comment.slam.user %>
                     <%= link_to 'Delete', book_slam_comment_path(comment.slam.book, comment.slam, comment), :class => 'btn btn-xs   btn-danger', :data => { :method => :delete, :confirm => 'Are you sure to delete this comment?' } ,:remote => true %>   
                 <% end %>
-                <%= link_to 'Reply', '#', :class => 'btn btn-xs btn-success btn-reply-comment', :data => { :form => "slam-#{comment.slam.id}-comment-#{comment.id}-reply-form" } %>
+                <%= link_to 'Reply', '#', :class => 'btn btn-xs btn-success btn-reply-comment', :data => { :form => "comment-#{comment.id}-reply-form" } %>
             <% end %>
         </div>     
     </div>
     <div class="comment-reply">
-        <div class="hidden" id='<%= "slam-#{comment.slam.id}-comment-#{comment.id}-reply-form" %>'>
-            <%= render 'comments/form', :slam => comment.slam, :comment => comment.replies.build, :remote => true %>             
+        <div class="hidden" id='<%= "comment-#{comment.id}-reply-form" %>'>
+            <%= render 'comments/form', :slam => comment.slam, :comment => comment.replies.build, :remote => true %>   
         </div>
-        <div class="comments" id='<%= "slam-#{comment.slam.id}-comment-#{comment.id}-replies" %>'>
+        <div class="comments" id='<%= "comment-#{comment.id}-replies" %>'>
             <%= render comment.replies.order('id ASC') %>
         </div>
     </div>

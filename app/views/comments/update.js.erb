@@ -1,1 +1,6 @@
-$('<%= "#comment-#{@comment.id}" %>').children(".comment-body").html("<%= j render @comment %>");
+<% comment_error_id = "comment-#{@comment.id}-errors" %>
+<% if @comment.errors.any? %>
+    $('<%= "##{comment_error_id}" %>').html("<%= j render 'shared/errors', :obj => @comment %>");
+<% else %>
+    $('<%= "#comment-#{@comment.id}" %>').children(".comment-body").html("<%= j render @comment %>");    
+<% end %>

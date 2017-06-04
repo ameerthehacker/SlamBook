@@ -4,6 +4,9 @@ class CommentsController < ApplicationController
     before_action :authenticate_user!
     before_action :comment_owner, :only => [ :edit, :update ]
     before_action :comment_or_slam_owner => [ :destroy ]
+    def index 
+        @comments = @slam.comments.where(:reply_to => nil)
+    end
     def create
         @comment = @slam.comments.build(get_params)
         @comment.user = current_user
